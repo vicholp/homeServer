@@ -4,10 +4,10 @@ import serial as sss
 import time
 import keyboard
 
-hostName = "192.168.1.8"
-COMM_PORT = 'COM3'
+hostName = "0.0.0.0"
+COMM_PORT = '/dev/ttyACM0'
 COMM_BAUD = "115200"
-serverPort = 8080
+serverPort = 80
 
 try:
     SERIAL = sss.Serial(COMM_PORT, baudrate=COMM_BAUD, timeout=5,  write_timeout=5)
@@ -194,6 +194,11 @@ class MyServer(BaseHTTPRequestHandler):
         # any file
         if (url.split('.')[-1] == 'ico'):
             return self.getFile('web/' + url[1:], m='rb', b=False), "image/x-icon"
+        if (url.split('.')[-1] == 'css'):
+            return self.getFile('web/' + url[1:], m='rb', b=False), "text/css"
+        if (url.split('.')[-1] == 'js'):
+            return self.getFile('web/' + url[1:], m='rb', b=False), "text/javascript"
+
 
         return self.getFile('web/' + url[1:] + '.html'), "text/html"
   
