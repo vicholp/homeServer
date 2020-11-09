@@ -1,0 +1,5 @@
+pyserial
+keyboard
+wakeonlan
+speedtest-cli
+hurry.filesize
