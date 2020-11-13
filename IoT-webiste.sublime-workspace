@@ -4,6 +4,66 @@
 		"selected_items":
 		[
 			[
+				"send",
+				"sendKey\t(remote.js)"
+			],
+			[
+				"shu",
+				"shuffleArray\tabc"
+			],
+			[
+				"max",
+				"max-height\tproperty"
+			],
+			[
+				"play",
+				"playlist\tabc"
+			],
+			[
+				"beet_play",
+				"beet_playpause\tabc"
+			],
+			[
+				"be",
+				"beet_nextPlaylist\tabc"
+			],
+			[
+				"btn",
+				"btn-nextSong\t(music.html)"
+			],
+			[
+				"text",
+				"textContent\tabc"
+			],
+			[
+				"beet",
+				"beet_startPlaylist\t(music.js)"
+			],
+			[
+				"re",
+				"results\tabc"
+			],
+			[
+				"result",
+				"resultados\tabc"
+			],
+			[
+				"query",
+				"querySelector\tabc"
+			],
+			[
+				"audio",
+				"audio-player\t(music.html)"
+			],
+			[
+				"table",
+				"table-songs\t(music.html)"
+			],
+			[
+				"albm",
+				"albums\tabc"
+			],
+			[
 				"fore",
 				"foreignId\tabc"
 			],
@@ -38,10 +98,6 @@
 			[
 				"Prod",
 				"ProductoController@show\tabc"
-			],
-			[
-				"table",
-				"table-borderless\t(checkout.blade.php)"
 			],
 			[
 				"Tien",
@@ -106,10 +162,6 @@
 			[
 				"bac",
 				"background-color\tproperty"
-			],
-			[
-				"max",
-				"max-height\t(main.css)"
 			],
 			[
 				"alig",
@@ -206,10 +258,6 @@
 			[
 				"con",
 				"console\tabc"
-			],
-			[
-				"query",
-				"querySelectorAll\tabc"
 			],
 			[
 				"getI",
@@ -466,59 +514,19 @@
 			[
 				"tabl",
 				"tableroNivel\tabc"
-			],
-			[
-				"tablero",
-				"tableroSize\tabc"
-			],
-			[
-				"file",
-				"fileInput\tabc"
-			],
-			[
-				"int",
-				"intToChar\tabc"
-			],
-			[
-				"ta",
-				"tableroMinas\tabc"
-			],
-			[
-				"tab",
-				"tableroSize\tabc"
-			],
-			[
-				"time",
-				"timedelta\tabc"
-			],
-			[
-				"cale",
-				"calendarId\tabc"
-			],
-			[
-				"provi",
-				"provisioning.sh"
-			],
-			[
-				"error",
-				"errorMgs\tabc"
-			],
-			[
-				"filte",
-				"filter_input\t(cart-commit.php)"
-			],
-			[
-				"usuario",
-				"usuarioNombre\tabc"
-			],
-			[
-				"usuai",
-				"usuarioCorreo\tabc"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "web/main.html",
+			"settings":
+			{
+				"buffer_size": 2666,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -732,7 +740,7 @@
 				"Git: Push"
 			],
 			[
-				"git quick",
+				"git qucik",
 				"Git: Quick Commit (repo)"
 			],
 			[
@@ -740,12 +748,20 @@
 				"Git: Add All"
 			],
 			[
-				"git chang",
-				"Git: Change Branch"
+				"git pull",
+				"Git: Pull"
+			],
+			[
+				"git quick",
+				"Git: Quick Commit (repo)"
 			],
 			[
 				"git add",
 				"Git: Add All"
+			],
+			[
+				"git chang",
+				"Git: Change Branch"
 			],
 			[
 				"git psuh",
@@ -777,10 +793,6 @@
 			],
 			[
 				"git pul",
-				"Git: Pull"
-			],
-			[
-				"git pull",
 				"Git: Pull"
 			],
 			[
@@ -1234,10 +1246,6 @@
 			[
 				"pac",
 				"Package Control: List Packages"
-			],
-			[
-				"git que",
-				"Git: Quick Commit (repo)"
 			]
 		],
 		"width": 444.0
@@ -1277,8 +1285,17 @@
 	],
 	"file_history":
 	[
-		"/D/dev/Proyectos/Arduino/IoT-website/requirements.txt",
+		"/D/dev/Proyectos/Arduino/IoT-website/web/music.html",
+		"/D/dev/Proyectos/Arduino/IoT-website/web/main.js",
+		"/D/dev/Proyectos/Arduino/IoT-website/web/main.html",
+		"/D/dev/Proyectos/Arduino/IoT-website/web/lights.html",
 		"/D/dev/Proyectos/Arduino/IoT-website/web/desk.html",
+		"/D/dev/Proyectos/Arduino/IoT-website/web/lights.js",
+		"/D/dev/Proyectos/Arduino/IoT-website/web/remote.html",
+		"/D/dev/Proyectos/Arduino/IoT-website/web/remote.js",
+		"/D/dev/Proyectos/Arduino/IoT-website/web/main.css",
+		"/D/dev/Proyectos/Arduino/IoT-website/web/music.js",
+		"/D/dev/Proyectos/Arduino/IoT-website/requirements.txt",
 		"/D/dev/Proyectos/Arduino/web.old/Others/utilities/network_speed.py",
 		"/D/dev/Proyectos/Pastelitos/Pastelitos/resources/views/admin/recipes/index.blade.php",
 		"/D/dev/Proyectos/Pastelitos/Pastelitos/public/src/css/main.css",
@@ -1395,16 +1412,7 @@
 		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/resources/views/tienda/template/breadcrumb.blade.php",
 		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/app/Http/Controllers/TiendaController.php",
 		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/app/Providers/DuskServiceProvider.php",
-		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/app/Providers/RouteServiceProvider.php",
-		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/routes/api.php",
-		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/routes/web.php",
-		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/app/Http/Controllers/Admin/PedidoController.php",
-		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/app/Http/Controllers/Admin/ProductoController.php",
-		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/app/Http/Controllers/ConveniosController.php",
-		"/C/Users/Vicho/Desktop/RGB16Million.tif",
-		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/public/css/main.css",
-		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/tests/DuskTestCase.php",
-		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/public/js/cart.js"
+		"/D/dev/Proyectos/Ortopedia-Online/ortopediaonline.cl/app/Providers/RouteServiceProvider.php"
 	],
 	"find":
 	{
@@ -1439,8 +1447,127 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "web/main.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2666,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1356,
+								1356
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1371,
+										1372
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"region.greenish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1327,
+										1328
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"incomplete_sync": null,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],

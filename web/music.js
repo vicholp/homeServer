@@ -19,6 +19,8 @@ document.querySelector("#btn-play").addEventListener('click', function(){
 	beet_playpause();
 })
 
+
+
 function beet_search(arg){
 	document.querySelector("#row-songResults").hidden = true;
 	fetch(`${url}:${beet_port}/item/query/${arg}`, {method: 'GET'})
@@ -39,16 +41,21 @@ function beet_showResults(results){
 
 	for (const [i, song] of results.entries()){
 
-  	songT = document.querySelector("#template-song");
+  	songT = document.querySelector("#template-song").cloneNode(true);
     td = songT.content.querySelectorAll("td")
+
 
     td[0].textContent = `${song.title}`
     td[1].textContent = `${song.artist}`
     td[2].textContent = `${song.album}`
     td[3].children[0].children[0].setAttribute('onclick',`beet_play('searchResults', ${i})`);
 
-    clone = document.importNode(songT.content, true);
-    table.appendChild(clone);
+    if (song.format === "FLAC"){
+    	td[0].classList.add('mdi')
+    	td[0].classList.add('mdi-quality-high')
+    }
+
+    table.appendChild(songT.content);
 
   }
   resultados = results
@@ -75,12 +82,13 @@ function beet_playpause(){
 	}
 }
 
-function beet_startPlaylist(playlist, item, shuffle=false){
+function beet_startPlaylist(playlist, item, name="" shuffle=false){
 	if (shuffle){
 		playlist = shuffleArray(playlist)
 	}
 	sessionStorage.setItem("playlist", JSON.stringify(playlist));
 	sessionStorage.setItem("playlist_actual", item);
+	sessionStorage.setItem("playlist_nombre", name);
 	beet_play('playlist', item)
 	document.querySelector("#audio-player").addEventListener('ended', function(){
 		beet_movePlaylist(1)
@@ -104,6 +112,12 @@ function beet_movePlaylist(i){
 	nuevo = (((actual + i) % length) + length) % length;
 	sessionStorage.setItem("playlist_actual", nuevo);
 	beet_play('playlist', nuevo);
+}
+
+function Search(arg){
+	document.querySelector('#input-search').value = arg
+	beet_search(arg)
+
 }
 
 fetch(`${url}:${beet_port}/item/`, {method: 'GET'})

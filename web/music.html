@@ -57,11 +57,11 @@
     	<div class="row mt-3">
         <div class="col-12 col-8">
         	<div class="card bg-dark text-white">
-					  <img id="img-songArt" src="http://192.168.1.5:9000/album/30/art" class="card-img" style="max-height: 500px">
+					  <img id="img-songArt" src="" class="card-img" style="max-height: 500px">
 					  <div class="overlay-div"></div>
 					  <div class="card-img-overlay">
-			  			<h5 id="text-songTitle" class="card-title">Keine Lust</h5>
-					    <h6 id="text-songArtist" class="card-subtitle mb-2 text-muted">Rammstein</h6>
+			  			<h5 id="text-songTitle" class="card-title"></h5>
+					    <h6 id="text-songArtist" class="card-subtitle mb-2 text-muted"></h6>
 					    <button id="btn-prevSong" class="btn mdi text-white mdi-skip-previous"></button>
 					    <button id="btn-play" class="btn mdi text-white mdi-play"></button>
 					    <button id="btn-nextSong" class="btn mdi text-white mdi-skip-next"></button>
@@ -75,6 +75,21 @@
           <div class="card bg-dark text-white mt-3 ">
             <div class="card-body ">
               <input id="input-search" type="text" class="form-control border-success">
+              <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-secondary" onclick="Search('mood_sad:0.8..')">🙁</button>
+                  <button type="button" class="btn btn-secondary" onclick="Search('mood_happy:0.8..')">🙂</button>
+                  <button type="button" class="btn btn-secondary" onclick="Search('mood_aggressive:0.8..')">😡</button>
+                  <button type="button" class="btn btn-secondary" onclick="Search('mood_party:0.8..')">🎉</button>
+                  <button type="button" class="btn btn-secondary" onclick="Search('mood_acoustic:0.8..')">🎸</button>
+                  <button type="button" class="btn btn-secondary" onclick="Search('mood_electronic:0.8..')">🔌</button>
+                  <button type="button" class="btn btn-secondary" onclick="Search('mood_relaxed:0.8..')">😑</button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-secondary" onclick="Search('format:FLAC')">FLAC</button>
+                  <button type="button" class="btn btn-secondary" onclick="Search('format:MP3')">MP3</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
