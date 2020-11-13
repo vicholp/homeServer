@@ -82,7 +82,7 @@ function beet_playpause(){
 	}
 }
 
-function beet_startPlaylist(playlist, item, name="" shuffle=false){
+function beet_startPlaylist(playlist, item, name="", shuffle=false){
 	if (shuffle){
 		playlist = shuffleArray(playlist)
 	}
