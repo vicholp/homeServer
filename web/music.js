@@ -56,7 +56,22 @@ function beet_resume(){
 }
 
 
+function beet_setRemotePlay(device){
+	playing_device = device
+	sessionStorage.setItem('playing_device', device)
 
+	btn = document.querySelector("#btn-remotePlay")
+	if (device == "notebook"){
+		btn.classList.remove("btn-secondary")
+		btn.classList.add("btn-success")
+	}else if (device == "self"){
+		btn.classList.add("btn-secondary")
+		btn.classList.remove("btn-success")
+	}
+	beet_playpause('pause')
+	fetch(`${url}/1/player/play/${song.path}`, {method: 'POST'})
+
+}
 
 
 
