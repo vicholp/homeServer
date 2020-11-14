@@ -3,6 +3,8 @@ import time
 import serial as sss
 import time
 import keyboard
+import player
+import urllib.parse 
 
 hostName = "0.0.0.0"
 COMM_PORT = '/dev/ttyACM0'
@@ -158,9 +160,9 @@ def commToHost(string, serial):
             print('ERROR - Tecla no existe')
     def doPlayer(action, path=""):
         if action == 'play':
-            vlc_startPlay(path)
+            player.vlc_startPlay(urllib.parse.unquote(path))
         elif action == 'pause':
-            vlc_togglePause()
+            player.vlc_togglePause()
 
     action = string.split('/')[1];
 
