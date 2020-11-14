@@ -45,20 +45,25 @@ function beet_showResults(results){
     td = songT.content.querySelectorAll("td")
 
 
-    td[0].textContent = `${song.title}`
-    td[1].textContent = `${song.artist}`
-    td[2].textContent = `${song.album}`
-    td[3].children[0].children[0].setAttribute('onclick',`beet_play('searchResults', ${i})`);
+    td[0].children[0].textContent = `${song.title}`
+    td[0].children[1].textContent = `${song.artist}`
+    td[1].textContent = `${song.album}`
+    td[2].children[0].children[0].setAttribute('onclick',`beet_play('searchResults', ${i})`);
+    td[2].children[0].children[1].setAttribute('onclick',`beet_info('searchResults', ${i})`);
 
     if (song.format === "FLAC"){
-    	td[0].classList.add('mdi')
-    	td[0].classList.add('mdi-quality-high')
+    	td[0].children[0].classList.add('mdi')
+    	td[0].children[0].classList.add('mdi-quality-high')
     }
 
     table.appendChild(songT.content);
 
   }
   resultados = results
+
+}
+
+function beet_info(){
 
 }
 
@@ -89,7 +94,7 @@ function beet_playpause(){
 	}
 }
 
-function beet_startPlaylist(playlist, item, name="", shuffle=false){
+function beet_startPlaylist(playlist, item, shuffle=false, name=""){
 	if (shuffle){
 		playlist = shuffleArray(playlist)
 	}
