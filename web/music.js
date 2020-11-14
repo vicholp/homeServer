@@ -74,8 +74,8 @@ function beet_play(list, item){
 }
 
 function beet_setRemotePlayer(){
-	path = encodeURIComponent('/home/vicente/Music/Lana Del Rey/Born to Die/14 Lolita.flac')
-	fetch(`${url}/1/play/${path}`, {method: 'POST'})
+	path = encodeURIComponent('/home/vicente/Music/Rammstein/Mutter/09 Rein raus.flac')
+	fetch(`${url}/1/player/play/${path}`, {method: 'POST'})
 	 
 	
 }
