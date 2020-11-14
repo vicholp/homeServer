@@ -229,6 +229,10 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes(commNew(self.path[1:], SERIAL), "utf-8"))
 
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        super(CORSHTTPRequestHandler, self).end_headers(self)
+
 
 
 

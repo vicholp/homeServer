@@ -73,6 +73,13 @@ function beet_play(list, item){
 	player.play()
 }
 
+function beet_setRemotePlayer(){
+	path = encodeURIComponent('/home/vicente/Music/Lana Del Rey/Born to Die/14 Lolita.flac')
+	fetch(`${url}/1/play/${path}`, {method: 'POST'})
+	 
+	
+}
+
 function beet_playpause(){
 	player = document.querySelector("#audio-player");
 	if (player.paused){
