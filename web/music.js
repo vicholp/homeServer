@@ -15,7 +15,7 @@ document.querySelector("#btn-nextSong").addEventListener('click', function(){
 document.querySelector("#btn-prevSong").addEventListener('click', function(){
 	beet_movePlaylist(-1);
 })
-document.querySelector("#btn-play").addEventListener('click', function(){
+document.querySelector("#btn-player-play").addEventListener('click', function(){
 	beet_playpause();
 })
 
@@ -74,24 +74,39 @@ function beet_play(list, item){
 	player.src = `${url}:${beet_port}/item/${id}/file`
 	document.querySelector("#text-songTitle").textContent = song.title
 	document.querySelector("#text-songArtist").textContent = song.artist
+
 	document.querySelector("#img-songArt").src = `${url}:${beet_port}/album/${song.album_id}/art`
+
+	sessionStorage.setItem("player_playing", 'playing');
+
+	document.querySelector("#row-player").hidden = false
+	document.querySelector("#btn-player-play").classList.remove('mdi-play')
+	document.querySelector("#btn-player-play").classList.add('mdi-pause')
 	player.play()
 }
 
 function beet_setRemotePlayer(){
 	path = encodeURIComponent('/home/vicente/Music/Rammstein/Mutter/09 Rein raus.flac')
 	fetch(`${url}/1/player/play/${path}`, {method: 'POST'})
-	 
-	
+		
 }
 
 function beet_playpause(){
 	player = document.querySelector("#audio-player");
 	if (player.paused){
 		player.play()
+		sessionStorage.setItem("player_playing", 'playing');
+		document.querySelector("#btn-player-play").classList.remove('mdi-play')
+		document.querySelector("#btn-player-play").classList.add('mdi-pause')
+	
 	}else{
 		player.pause()
+		sessionStorage.setItem("player_playing", 'paused');
+		document.querySelector("#btn-player-play").classList.remove('mdi-pause')
+		document.querySelector("#btn-player-play").classList.add('mdi-play')
+		
 	}
+	
 }
 
 function beet_startPlaylist(playlist, item, shuffle=false, name=""){

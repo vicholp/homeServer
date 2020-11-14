@@ -54,16 +54,16 @@
 
   <div class="container-fluid mt-4">
     <div class="container-xl px-0">
-    	<div class="row mt-3">
+    	<div id="row-player" class="row mt-3" hidden>
         <div class="col-12 col-8">
         	<div class="card bg-dark text-white">
-					  <img id="img-songArt" src="" class="card-img" style="max-height: 500px">
+					  <img id="img-songArt" src="" class="card-img" style="max-height: 500px; min-height: 500px">
 					  <div class="overlay-div"></div>
 					  <div class="card-img-overlay">
 			  			<h5 id="text-songTitle" class="card-title"></h5>
 					    <h6 id="text-songArtist" class="card-subtitle mb-2 text-muted"></h6>
 					    <button id="btn-prevSong" class="btn mdi text-white mdi-skip-previous"></button>
-					    <button id="btn-play" class="btn mdi text-white mdi-play"></button>
+					    <button id="btn-player-play" class="btn mdi text-white mdi-pause"></button>
 					    <button id="btn-nextSong" class="btn mdi text-white mdi-skip-next"></button>
 					  </div>
 					</div>
@@ -76,25 +76,33 @@
             <div class="card-body ">
               <input id="input-search" type="text" class="form-control border-success">
               <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="btn-group mr-2" role="group" aria-label="First group">
-                  <button type="button" class="btn btn-secondary" onclick="Search('mood_sad:0.8..')">🙁</button>
-                  <button type="button" class="btn btn-secondary" onclick="Search('mood_happy:0.8..')">🙂</button>
-                  <button type="button" class="btn btn-secondary" onclick="Search('mood_aggressive:0.8..')">😡</button>
-                  <button type="button" class="btn btn-secondary" onclick="Search('mood_party:0.8..')">🎉</button>
-                  <button type="button" class="btn btn-secondary" onclick="Search('mood_acoustic:0.8..')">🎸</button>
-                  <button type="button" class="btn btn-secondary" onclick="Search('mood_electronic:0.8..')">🔌</button>
-                  <button type="button" class="btn btn-secondary" onclick="Search('mood_relaxed:0.8..')">😑</button>
+                <div class="dropdown mr-2">
+                  <button class="btn btn-secondary dropdown-toggle mdi mdi-music-clef-treble" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                  </button>
+                  <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
+                    <button type="button" class="dropdown-item" onclick="Search('mood_sad:0.8..')">🙁 mood_sad</button>
+                    <button type="button" class="dropdown-item" onclick="Search('mood_happy:0.8..')">🙂 mood_happy</button>
+                    <button type="button" class="dropdown-item" onclick="Search('mood_aggressive:0.8..')">😡 mood_aggressive</button>
+                    <button type="button" class="dropdown-item" onclick="Search('mood_party:0.8..')">🎉 mood_party</button>
+                    <button type="button" class="dropdown-item" onclick="Search('mood_acoustic:0.8..')">🎸 mood_acoustic</button>
+                    <button type="button" class="dropdown-item" onclick="Search('mood_electronic:0.8..')">🔌 mood_electronic</button>
+                    <button type="button" class="dropdown-item" onclick="Search('mood_relaxed:0.8..')">😑 mood_relaxed</button>
+                  </div>
                 </div>
-                <div class="btn-group mr-2" role="group" aria-label="First group">
-                  <button type="button" class="btn btn-secondary" onclick="Search('format:FLAC')">FLAC</button>
-                  <button type="button" class="btn btn-secondary" onclick="Search('format:MP3')">MP3</button>
+                <div class="dropdown mr-2">
+                  <button class="btn btn-secondary dropdown-toggle mdi mdi-file-music-outline" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                  </button>
+                  <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
+                    <button type="button" class="dropdown-item mdi mdi-quality-high" onclick="Search('format:FLAC')"> FLAC</button>
+                  <button type="button" class="dropdown-item mdi mdi mdi-quality-medium" onclick="Search('format:MP3')"> MP3</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row mt-3" id="row-songResults" >
+      <div class="row mt-3" id="row-songResults" hidden>
       	<div class="col">
       		<div class="card bg-dark table-striped table-borderless text-white mt-3">
             <div class="card-body px-0 px-md-4">
