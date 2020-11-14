@@ -156,6 +156,11 @@ def commToHost(string, serial):
 
         except:
             print('ERROR - Tecla no existe')
+    def doPlayer(action, path=""):
+        if action == 'play':
+            vlc_startPlay(path)
+        elif action == 'pause':
+            vlc_togglePause()
 
     action = string.split('/')[1];
 
@@ -167,6 +172,12 @@ def commToHost(string, serial):
 
     elif (action == 'serial'):
         doSerial(string.split('/')[2], serial)
+
+    elif action == 'player':
+        try:
+            doPlayer(string.split('/')[2], string.split('/')[3])
+        except:
+            doPlayer(string.split('/')[2])
 
     return "OK"
 
