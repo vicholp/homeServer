@@ -10,6 +10,6 @@ def vlc_startPlay(path):
 	vlc_player.play()
 
 def vlc_togglePause():
-	vlc_player.pause()
+	player.pause()
 
 
