@@ -10,16 +10,16 @@ search = document.querySelector('#input-search')
   })
 
 if (sessionStorage.getItem('player_playing') == 'playing'){
+	document.querySelector('#btn-resumePlaylist').hidden = false
+}
+function beet_resume(){
+	document.querySelector('#btn-resumePlaylist').hidden = true
 	playlist= JSON.parse(sessionStorage.getItem("playlist"))
 	item = parseInt(sessionStorage.getItem('playlist_actual'))
 	console.log(item)
-	if (confirm(`Reanudar desde ${playlist[item].title} - ${playlist[item].artist}`)){
-		beet_startPlaylist('playlist', item)
-	}else{
-		sessionStorage.setItem('playlist', '')
-		sessionStorage.setItem('playlist_actual', '')
-	}
+	beet_startPlaylist('playlist', item)
 }
+
 
 document.querySelector("#btn-nextSong").addEventListener('click', function(){
 	beet_movePlaylist(1);
@@ -90,6 +90,7 @@ function beet_play(list, item){
 	document.querySelector("#img-songArt").src = `${url}:${beet_port}/album/${song.album_id}/art`
 
 	sessionStorage.setItem("player_playing", 'playing');
+	sessionStorage.setItem("playlist_actual", item);
 
 	document.querySelector("#row-player").hidden = false
 	document.querySelector("#btn-player-play").classList.remove('mdi-play')
@@ -121,7 +122,8 @@ function beet_playpause(){
 	
 }
 
-function beet_startPlaylist(playlist, item, shuffle=false, name=""){
+function beet_startPlaylist(playlist_name, item, shuffle=false, name=""){
+	playlist = JSON.parse(sessionStorage.getItem(playlist_name))
 	if (shuffle){
 		playlist = shuffleArray(playlist)
 	}

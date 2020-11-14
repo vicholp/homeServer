@@ -68,7 +68,7 @@
 					  </div>
 					</div>
         </div>
-        <audio id="audio-player" src="audio.ogg" autoplay preload="auto">
+        <audio id="audio-player" src="" autoplay preload="auto">
       </div>
       <div class="row mt-3">
         <div class="col-12 col-8">
@@ -76,7 +76,8 @@
             <div class="card-body ">
               <input id="input-search" type="text" class="form-control border-success">
               <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="dropdown mr-2">
+                <div id="div-quickPlaylist" class="dropdown mr-2">
+                  <button id="btn-resumePlaylist" class="btn btn-success" onclick="beet_resume()" hidden>Reanudar</button>
                   <button class="btn btn-secondary dropdown-toggle mdi mdi-music-clef-treble" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                   </button>
                   <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
@@ -108,8 +109,8 @@
             <div class="card-body px-0 px-md-4">
 
             	<div class="btn-group mx-4 mx-md-0" role="group">
-            		<button class="btn btn-success mdi mdi-playlist-play" onclick="beet_startPlaylist(resultados,0)"> Start Playlist</button>
-            		<button class="btn btn-success mdi mdi-shuffle " onclick="beet_startPlaylist(resultados,0, true)" > Shuffle</button>
+            		<button class="btn btn-success mdi mdi-playlist-play" onclick="beet_startPlaylist('searchResults',0)"> Start Playlist</button>
+            		<button class="btn btn-success mdi mdi-shuffle " onclick="beet_startPlaylist('searchResults',0, true)" > Shuffle</button>
             	</div>
 		      		<table class="table table-dark mx-0 px-0">
 		      			<template id="template-song">
