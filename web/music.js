@@ -1,25 +1,10 @@
-var songs;
-var albums;
-
-var resultados
+var playing_device = sessionStorage.getItem('playing_device') || 'self';
 
 search = document.querySelector('#input-search')
   search.addEventListener('change', function(){
     console.log('buscando:' + search.value)
     beet_search(search.value)
   })
-
-if (sessionStorage.getItem('player_playing') == 'playing'){
-	document.querySelector('#btn-resumePlaylist').hidden = false
-}
-function beet_resume(){
-	document.querySelector('#btn-resumePlaylist').hidden = true
-	playlist= JSON.parse(sessionStorage.getItem("playlist"))
-	item = parseInt(sessionStorage.getItem('playlist_actual'))
-	console.log(item)
-	beet_startPlaylist('playlist', item)
-}
-
 
 document.querySelector("#btn-nextSong").addEventListener('click', function(){
 	beet_movePlaylist(1);
@@ -30,6 +15,48 @@ document.querySelector("#btn-prevSong").addEventListener('click', function(){
 document.querySelector("#btn-player-play").addEventListener('click', function(){
 	beet_playpause();
 })
+
+navigator.mediaSession.setActionHandler('play', function(){ beet_playpause("play")});
+navigator.mediaSession.setActionHandler('pause', function(){ beet_playpause("pause")});
+navigator.mediaSession.setActionHandler('previoustrack', function(){ beet_movePlaylist(-1)});
+navigator.mediaSession.setActionHandler('nexttrack', function(){ beet_movePlaylist(1)});
+
+function setMediaMetadata(item, image){
+	navigator.mediaSession.metadata = new MediaMetadata({
+	    title: item.title,
+	    artist: item.artist,
+	    album: item.album,
+	    artwork: [
+	      { src: image, sizes: '512x512', type: 'image/png' },
+	    ]
+  	});
+}
+
+if (sessionStorage.getItem('player_playing') == 'playing'){
+	document.querySelector('#btn-resumePlaylist').hidden = false
+}
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array
+}
+
+
+function beet_resume(){
+	document.querySelector('#btn-resumePlaylist').hidden = true
+	playlist= JSON.parse(sessionStorage.getItem("playlist"))
+	item = parseInt(sessionStorage.getItem('playlist_actual'))
+	console.log(item)
+	beet_startPlaylist('playlist', item)
+}
+
+
+
 
 
 
@@ -92,6 +119,7 @@ function beet_info(playlist, item=0){
 function beet_play(list, item){
 	song = JSON.parse(sessionStorage.getItem(list))[item]
 	id = song.id
+	setMediaMetadata(song, `${url}:${beet_port}/album/${song.album_id}/art`)
 	player = document.querySelector("#audio-player");
 	player.src = `${url}:${beet_port}/item/${id}/file`
 	document.querySelector("#text-songTitle").textContent = song.title
@@ -105,29 +133,27 @@ function beet_play(list, item){
 	document.querySelector("#row-player").hidden = false
 	document.querySelector("#btn-player-play").classList.remove('mdi-play')
 	document.querySelector("#btn-player-play").classList.add('mdi-pause')
-	player.play()
+
+	if (playing_device == "self"){
+		player.play()
+	}else{
+		fetch(`${url}/1/player/play/${song.path}`, {method: 'POST'})
+	}
 }
 
-function beet_setRemotePlayer(){
-	path = encodeURIComponent('/home/vicente/Music/Rammstein/Mutter/09 Rein raus.flac')
-	fetch(`${url}/1/player/play/${path}`, {method: 'POST'})
-		
-}
-
-function beet_playpause(){
+function beet_playpause(action=""){
 	player = document.querySelector("#audio-player");
-	if (player.paused){
+	if (player.paused || action == "play"){
 		player.play()
 		sessionStorage.setItem("player_playing", 'playing');
 		document.querySelector("#btn-player-play").classList.remove('mdi-play')
 		document.querySelector("#btn-player-play").classList.add('mdi-pause')
 	
-	}else{
+	}else if(!player.paused || action == "pause"){
 		player.pause()
 		sessionStorage.setItem("player_playing", 'paused');
 		document.querySelector("#btn-player-play").classList.remove('mdi-pause')
 		document.querySelector("#btn-player-play").classList.add('mdi-play')
-		
 	}
 	
 }
@@ -146,15 +172,7 @@ function beet_startPlaylist(playlist_name, item, shuffle=false, name=""){
 	})
 }
 
-function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array
-}
+
 
 function beet_movePlaylist(i){
 	playlist = JSON.parse(sessionStorage.getItem("playlist"));
@@ -168,36 +186,5 @@ function beet_movePlaylist(i){
 function Search(arg){
 	document.querySelector('#input-search').value = arg
 	beet_search(arg)
-
 }
 
-fetch(`${url}:${beet_port}/item/`, {method: 'GET'})
-  .then( function(response) {
-  	console.log(response.status)
-    if (response.status !== 200)  return false;
-      response.json().then(function(data) {
-        songs = data
-      }
-    );
-  }
-)
-  fetch(`${url}:${beet_port}/album/`, {method: 'GET'})
-  .then( function(response) {
-  	console.log(response.status)
-    if (response.status !== 200)  return false;
-      response.json().then(function(data) {
-        albums = data
-      }
-    );
-  }
-)
-fetch(`${url}:${beet_port}/album/1/art`, {method: 'GET'})
-  .then( function(response) {
-  	console.log(response.status)
-    if (response.status !== 200)  return false;
-      response.json().then(function(data) {
-        console.log(data)
-      }
-    );
-  }
-)

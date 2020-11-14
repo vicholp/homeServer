@@ -55,28 +55,41 @@
   <div class="container-fluid mt-4">
     <div class="container-xl px-0">
     	<div id="row-player" class="row mt-3" hidden>
-        <div class="col-12 col-8">
-        	<div class="card bg-dark text-white">
-					  <img id="img-songArt" src="" class="card-img" style="max-height: 500px; min-height: 500px">
-					  <div class="overlay-div"></div>
-					  <div class="card-img-overlay">
-			  			<h5 id="text-songTitle" class="card-title"></h5>
-					    <h6 id="text-songArtist" class="card-subtitle mb-2 text-muted"></h6>
-					    <button id="btn-prevSong" class="btn mdi text-white mdi-skip-previous"></button>
-					    <button id="btn-player-play" class="btn mdi text-white mdi-pause"></button>
-					    <button id="btn-nextSong" class="btn mdi text-white mdi-skip-next"></button>
-					  </div>
-					</div>
+        <div class="col">
+          <div class="card mb-3 bg-dark">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img id="img-songArt" src="" class="card-img" style="">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body text-white">
+                  <h5 id="text-songTitle" class="card-title"></h5>
+                  <h6 id="text-songArtist" class="card-subtitle mb-2 text-muted"></h6>
+
+                  <button id="btn-prevSong" class="btn mdi text-white mdi-skip-previous"></button>
+                  <button id="btn-player-play" class="btn mdi text-white mdi-pause"></button>
+                  <button id="btn-nextSong" class="btn mdi text-white mdi-skip-next"></button>
+                  
+
+                  
+                </div>
+                
+              
+                 
+                
+              </div>
+            </div>
+          </div>
+          <audio id="audio-player" src="" autoplay preload="auto">
         </div>
-        <audio id="audio-player" src="" autoplay preload="auto">
       </div>
       <div class="row mt-3">
-        <div class="col-12 col-8">
+        <div class="col">
           <div class="card bg-dark text-white mt-3 ">
             <div class="card-body ">
               <input id="input-search" type="text" class="form-control border-success">
               <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
-                <button id="btn-resumePlaylist" class="btn btn-success" onclick="beet_resume()" hidden>Reanudar</button>
+                <button id="btn-resumePlaylist" class="btn btn-success mr-2" onclick="beet_resume()" hidden>Reanudar</button>
                 <div id="div-quickPlaylist" class="dropdown mr-2">
                   <button class="btn btn-secondary dropdown-toggle mdi mdi-music-clef-treble" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                   </button>
