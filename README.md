@@ -1,3 +1,3 @@
 #iot-website
 
-front de proyecto personal de iot, usando React y rest
+front a la rapidisima
