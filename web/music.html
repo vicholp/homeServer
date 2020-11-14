@@ -76,8 +76,8 @@
             <div class="card-body ">
               <input id="input-search" type="text" class="form-control border-success">
               <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
+                <button id="btn-resumePlaylist" class="btn btn-success" onclick="beet_resume()" hidden>Reanudar</button>
                 <div id="div-quickPlaylist" class="dropdown mr-2">
-                  <button id="btn-resumePlaylist" class="btn btn-success" onclick="beet_resume()" hidden>Reanudar</button>
                   <button class="btn btn-secondary dropdown-toggle mdi mdi-music-clef-treble" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                   </button>
                   <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
@@ -90,12 +90,27 @@
                     <button type="button" class="dropdown-item" onclick="Search('mood_relaxed:0.8..')">😑 mood_relaxed</button>
                   </div>
                 </div>
+                <div id="div-quickPlaylist" class="dropdown mr-2">
+                  <button class="btn btn-secondary dropdown-toggle mdi mdi-music-clef-bass" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                  </button>
+                  <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
+                    <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:cla')">🎻 cla</button>
+                    <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:dan')">🎼 dan</button>
+                    <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:hip')">🎵 hip</button>
+                    <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:jaz')">🎷 jaz</button>
+                    <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:pop')">🎹 pop</button>
+                    <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:rhy')">🎺 rhy</button>
+                    <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:roc')">🎸 roc</button>
+                    <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:spe')">📻 spe</button>
+
+                  </div>
+                </div>
                 <div class="dropdown mr-2">
                   <button class="btn btn-secondary dropdown-toggle mdi mdi-file-music-outline" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                   </button>
                   <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
-                    <button type="button" class="dropdown-item mdi mdi-quality-high" onclick="Search('format:FLAC')"> FLAC</button>
-                  <button type="button" class="dropdown-item mdi mdi mdi-quality-medium" onclick="Search('format:MP3')"> MP3</button>
+                    <button type="button" class="dropdown-item" onclick="Search('format:FLAC')">🎶 FLAC</button>
+                    <button type="button" class="dropdown-item" onclick="Search('format:MP3')">🎵 MP3</button>
                   </div>
                 </div>
               </div>
@@ -144,7 +159,26 @@
       </div>
     </div>
   </div>
-  
+
+  <div class="modal fade" id="modal-info" tabindex="-1" >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-infoTitle"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modal-infoBody" class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </body>

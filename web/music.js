@@ -75,8 +75,18 @@ function beet_showResults(results){
 
 }
 
-function beet_info(){
+function beet_info(playlist, item=0){
+	song = JSON.parse(sessionStorage.getItem(playlist))[item]
+	JSON.stringify(song, undefined, 2)
+	document.querySelector("#modal-infoBody").innerHTML = ""
+	for (e in song) {
+		p = document.createElement("p")
+		p.innerHTML = `<b>${e}</b>: ${song[e]}`
+		document.querySelector("#modal-infoBody").appendChild(p)
+	}
+	document.querySelector("#modal-infoTitle").textContent = song.title
 
+	$('#modal-info').modal('show')
 }
 
 function beet_play(list, item){
