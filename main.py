@@ -231,7 +231,7 @@ class MyServer(BaseHTTPRequestHandler):
 
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
-        super(CORSHTTPRequestHandler, self).end_headers(self)
+        super(MyServer, self).end_headers(self)
 
 
 
