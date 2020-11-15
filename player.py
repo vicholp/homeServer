@@ -14,8 +14,10 @@ def vlc_playpause(action=False):
 	else:
 		if action == "play" and not vlc_player.is_playing():
 			vlc_player.set_pause(0)
+			print("PLAYPAUSE", "0")
 		elif action == "pause" and vlc_player.is_playing():
 			vlc_player.set_pause(1)
+			print("PLAYPAUSE", "1")
 
 
 

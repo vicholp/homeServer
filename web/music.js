@@ -152,7 +152,7 @@ function beet_play(list, item){
 
 	setMediaMetadata(song, `${url}:${beet_port}/album/${song.album_id}/art`)
 	sessionStorage.setItem("playlist_actual", item);
-	sessionStorage.setItem("playlist_nombre", list);
+	sessionStorage.setItem("playlist_nombre", classList);
 	
 	player.src = `${url}:${beet_port}/item/${id}/file`
 
