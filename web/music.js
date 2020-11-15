@@ -1,5 +1,5 @@
 
-beet_setPlayingDevice(sessionStorage.getItem('playing_device') || 'self')
+beet_setPlayingDevice('self')
 
 search = document.querySelector('#input-search')
   search.addEventListener('change', function(){
@@ -72,7 +72,6 @@ function beet_setPlayingDevice(device, play=false){
 		btn.classList.remove("btn-success")
 		btn.setAttribute( "onClick", "beet_setPlayingDevice('notebook', true)" );
 	}
-	console.log(play)
 	if (play){
 		playlist = sessionStorage.getItem('playlist_nombre')
 		item = sessionStorage.getItem('playlist_actual')
@@ -152,7 +151,7 @@ function beet_play(list, item){
 
 	setMediaMetadata(song, `${url}:${beet_port}/album/${song.album_id}/art`)
 	sessionStorage.setItem("playlist_actual", item);
-	sessionStorage.setItem("playlist_nombre", classList);
+	sessionStorage.setItem("playlist_nombre", list);
 	
 	player.src = `${url}:${beet_port}/item/${id}/file`
 
@@ -175,16 +174,15 @@ function beet_play(list, item){
 function player_pause(player=false){
 	if (playing_device !== "self"){
 		beet_remoteAction('pause')
-	}else{
-		player.pause()
 	}
+	player.pause()
+	
 }
 function player_play(player=false){
 	if (playing_device !== "self"){
 		beet_remoteAction('play')
-	}else{
-		player.play()
 	}
+	player.play()
 }
 
 function beet_playpause(action=""){
