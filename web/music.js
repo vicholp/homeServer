@@ -68,12 +68,9 @@ function beet_setRemotePlay(device){
 		btn.classList.add("btn-secondary")
 		btn.classList.remove("btn-success")
 	}
-	beet_playpause('pause')
-	fetch(`${url}/1/player/play/${song.path}`, {method: 'POST'})
+	
 
 }
-
-
 
 function beet_search(arg){
 	document.querySelector("#row-songResults").hidden = true;
@@ -114,7 +111,6 @@ function beet_showResults(results){
 
   }
   resultados = results
-
 }
 
 function beet_info(playlist, item=0){
@@ -131,44 +127,55 @@ function beet_info(playlist, item=0){
 	$('#modal-info').modal('show')
 }
 
+function beet_remoteAction(action, arg=false){
+	if (arg){
+		fetch(`${url}/1/player/${action}/${arg}`, {method: 'POST'})
+	}else{
+		fetch(`${url}/1/player/${action}`, {method: 'POST'})
+	}
+	
+}
+
 function beet_play(list, item){
+	player = document.querySelector("#audio-player");
 	song = JSON.parse(sessionStorage.getItem(list))[item]
 	id = song.id
+
 	setMediaMetadata(song, `${url}:${beet_port}/album/${song.album_id}/art`)
-	player = document.querySelector("#audio-player");
+	sessionStorage.setItem("playlist_actual", item);
+	
 	player.src = `${url}:${beet_port}/item/${id}/file`
+
 	document.querySelector("#text-songTitle").textContent = song.title
 	document.querySelector("#text-songArtist").textContent = song.artist
-
 	document.querySelector("#img-songArt").src = `${url}:${beet_port}/album/${song.album_id}/art`
 
-	sessionStorage.setItem("player_playing", 'playing');
-	sessionStorage.setItem("playlist_actual", item);
-
 	document.querySelector("#row-player").hidden = false
-	document.querySelector("#btn-player-play").classList.remove('mdi-play')
-	document.querySelector("#btn-player-play").classList.add('mdi-pause')
 
-	if (playing_device == "self"){
-		player.play()
+	if (playing_device !== "self"){
+		player.muted = true;
+		beet_remoteAction('play', encodeURIComponent(song.path))
 	}else{
-		fetch(`${url}/1/player/play/${song.path}`, {method: 'POST'})
+		player.muted = false;
 	}
+
+	beet_playpause("play")
 }
+
 
 function beet_playpause(action=""){
 	player = document.querySelector("#audio-player");
-	if (player.paused || action == "play"){
-		player.play()
+	if (player.paused || action === "play"){
 		sessionStorage.setItem("player_playing", 'playing');
 		document.querySelector("#btn-player-play").classList.remove('mdi-play')
 		document.querySelector("#btn-player-play").classList.add('mdi-pause')
+		player.play()
 	
-	}else if(!player.paused || action == "pause"){
-		player.pause()
+	}else if(!player.paused || action === "pause"){
 		sessionStorage.setItem("player_playing", 'paused');
 		document.querySelector("#btn-player-play").classList.remove('mdi-pause')
 		document.querySelector("#btn-player-play").classList.add('mdi-play')
+		player.pause()
 	}
 	
 }
