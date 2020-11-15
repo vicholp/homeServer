@@ -8,6 +8,7 @@ def vlc_startPlay(path):
 	vlc_player.set_media(vlc_instance.media_new(path))
 	
 def vlc_playpause(action=False):
+	print("PLAYPAUSE", action, vlc_player.is_playing())
 	if not action:
 		vlc_player.pause()
 	else:
