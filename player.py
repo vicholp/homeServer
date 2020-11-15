@@ -9,7 +9,7 @@ def vlc_startPlay(path):
 	
 def vlc_playpause(action=False):
 	print("PLAYPAUSE", action, vlc_player.is_playing())
-	if not action:
+	if action == False:
 		vlc_player.pause()
 	else:
 		if action == "play" and not vlc_player.is_playing():
