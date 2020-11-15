@@ -1,4 +1,5 @@
-var playing_device = sessionStorage.getItem('playing_device') || 'self';
+
+beet_setPlayingDevice(sessionStorage.getItem('playing_device') || 'self')
 
 search = document.querySelector('#input-search')
   search.addEventListener('change', function(){
@@ -56,19 +57,27 @@ function beet_resume(){
 }
 
 
-function beet_setRemotePlay(device){
+function beet_setPlayingDevice(device, play=false){
 	playing_device = device
 	sessionStorage.setItem('playing_device', device)
 
 	btn = document.querySelector("#btn-remotePlay")
-	if (device == "notebook"){
+	if (device === "notebook"){
 		btn.classList.remove("btn-secondary")
 		btn.classList.add("btn-success")
-	}else if (device == "self"){
+		btn.setAttribute( "onClick", "beet_setPlayingDevice('self', true)" );
+	}else if (device === "self"){
+		beet_remoteAction('pause')
 		btn.classList.add("btn-secondary")
 		btn.classList.remove("btn-success")
+		btn.setAttribute( "onClick", "beet_setPlayingDevice('notebook', true)" );
 	}
-	
+	console.log(play)
+	if (play){
+		playlist = sessionStorage.getItem('playlist_nombre')
+		item = sessionStorage.getItem('playlist_actual')
+		beet_play(playlist, item)
+	}
 
 }
 
@@ -154,7 +163,7 @@ function beet_play(list, item){
 
 	if (playing_device !== "self"){
 		player.muted = true;
-		beet_remoteAction('play', encodeURIComponent(song.path))
+		beet_remoteAction('start', encodeURIComponent(song.path))
 	}else{
 		player.muted = false;
 	}
@@ -162,6 +171,20 @@ function beet_play(list, item){
 	beet_playpause("play")
 }
 
+function player_pause(player=false){
+	if (playing_device !== "self"){
+		beet_remoteAction('pause')
+	}else{
+		player.pause()
+	}
+}
+function player_play(player=false){
+	if (playing_device !== "self"){
+		beet_remoteAction('play')
+	}else{
+		player.play()
+	}
+}
 
 function beet_playpause(action=""){
 	player = document.querySelector("#audio-player");
@@ -169,13 +192,15 @@ function beet_playpause(action=""){
 		sessionStorage.setItem("player_playing", 'playing');
 		document.querySelector("#btn-player-play").classList.remove('mdi-play')
 		document.querySelector("#btn-player-play").classList.add('mdi-pause')
-		player.play()
+		
+		player_play(player)
 	
 	}else if(!player.paused || action === "pause"){
 		sessionStorage.setItem("player_playing", 'paused');
 		document.querySelector("#btn-player-play").classList.remove('mdi-pause')
 		document.querySelector("#btn-player-play").classList.add('mdi-play')
-		player.pause()
+		
+		player_pause(player)
 	}
 	
 }
