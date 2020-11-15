@@ -15,6 +15,6 @@ def vlc_playpause(action=False):
 			vlc_player.pause()
 		else if action == "pause" and vlc_player.is_playing():
 			vlc_player.pause()
-def 
+
 
 
