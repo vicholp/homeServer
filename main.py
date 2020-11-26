@@ -69,20 +69,27 @@ def plot(serial, comm, file=False, it=1000):
 def commNew(string, serial):
     def commValidateCommand(arg):
         try:
-            s = arg.split('/')
-            int(s[0])/1
+            comm.split('-')
+            int(comm[1])/1
             return True
         except:
             print('ERROR - Comando invalido')
             return False
 
-    if(not commValidateCommand(string)):
-        return "Not valid"
+    url = string.split('/')
+    comm = url[1]
 
-    return commToDevice(string, serial)
+    if url[0] == 'comm':
+        if(not commValidateCommand(comm)):
+            return "Not valid"
+
+        return commToDevice('-'.comm[1], serial)
+
+    else:
+        return "Not found"
 
 def commToDevice(string, serial):
-    device_id = int(string.split('/')[0])
+    device_id = int(string[0])
 
     if(device_id == 1):
         return commToHost(string, serial)
@@ -114,7 +121,7 @@ def commToArduino(string, serial):
         while(serial.in_waiting):
             s = serial.readline().decode("utf-8");
             print( "<- Arduino - " +  s, end='' )
-            return s.split('/')[0];
+            return s;
         
         return "OK - Parse";
 
@@ -124,7 +131,7 @@ def commToArduino(string, serial):
             serial.readline()
         return "OK"
 
-    action = string.split('/')[1]
+    action = string[1]
     if (action == 'admin'):
         return write(serial, string+"|", action="parse")
     else:
@@ -168,22 +175,22 @@ def commToHost(string, serial):
         elif action == 'pause':
             player.vlc_playpause(action="pause")
 
-    action = string.split('/')[1];
+    action = string[1];
 
     if (action == 'check'):
         print("OK")
 
     elif (action == 'keyboard'):
-        doKeyboard(string.split('/')[2], string.split('/')[3])
+        doKeyboard(string[2], string[3])
 
     elif (action == 'serial'):
-        doSerial(string.split('/')[2], serial)
+        doSerial(string[2], serial)
 
     elif action == 'player':
         try:
-            doPlayer(string.split('/')[2], string.split('/')[3])
+            doPlayer(string[2], string[3])
         except:
-            doPlayer(string.split('/')[2])
+            doPlayer(string[2])
 
     return "OK"
 

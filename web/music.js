@@ -1,4 +1,3 @@
-
 beet_setPlayingDevice('self')
 
 search = document.querySelector('#input-search')
@@ -157,6 +156,7 @@ function beet_play(list, item){
 
 	document.querySelector("#text-songTitle").textContent = song.title
 	document.querySelector("#text-songArtist").textContent = song.artist
+	
 	document.querySelector("#img-songArt").src = `${url}:${beet_port}/album/${song.album_id}/art`
 
 	document.querySelector("#row-player").hidden = false
@@ -169,6 +169,7 @@ function beet_play(list, item){
 	}
 
 	beet_playpause("play")
+
 }
 
 function player_pause(player=false){
