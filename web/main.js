@@ -3,13 +3,13 @@ const beet_port = "9000"
 
 
 function sendCommand(cmd){
-  fetch(`${url}/comm/${cmd}`, {method: 'POST'})
+  fetch(`${url}/${cmd}`, {method: 'POST'})
     .then( function(response) {
       if (response.status !== 200)  return false;
         response.json().then(function(data) {
-          console.log(data)
+          return data
         }
-      );
+      ).catch(err => console.log(response))
     })
     .catch(err => false);
 }

@@ -78,8 +78,6 @@ def commNew(string, serial):
 
     url = string.split('/')
     comm = url[1]
-    print(url)
-    print(comm)
     if url[0] == 'comm':
         if(not commValidateCommand(comm)):
             return "Not valid"
@@ -102,8 +100,8 @@ def commToArduino(string, serial):
         serial.write( bytes(string, encoding='utf-8') );
         if(action == "read"):
             return log(serial, w)
-        elif(action == "parse"):
-            return parse(serial, w)
+        elif(action == "query"):
+            return query(serial, w)
         elif(action == "flush"):
             return flush(serial, w)
         return True
@@ -116,15 +114,16 @@ def commToArduino(string, serial):
 
         return "OK"
 
-    def parse(serial, w=.01):
+    def query(serial, w=.01):
         time.sleep(w)
 
-        while(serial.in_waiting):
-            s = serial.readline().decode("utf-8");
-            print( "<- Arduino - " +  s, end='' )
-            return s;
-        
-        return "OK - Parse";
+        s = serial.readline().decode("utf-8");
+        print( "<- Arduino - " +  s, end='' )
+        while(serial.in_waiting):    
+            i = serial.readline().decode("utf-8");
+            print( "<- Arduino - " +  i, end='' )
+
+        return s;
 
     def flush(serial, w=.01):
         time.sleep(w)
@@ -134,9 +133,8 @@ def commToArduino(string, serial):
 
     action = string[1]
     string = '-'.join(string)
-    print('string', string)
     if (action == 'admin'):
-        return write(serial, string+"|", action="parse")
+        return write(serial, string+"|", action="query")
     else:
         return write(serial, string+"|", action="read")
 

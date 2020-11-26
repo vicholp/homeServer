@@ -59,22 +59,28 @@
           <div class="card bg-dark text-white">
             <div class="card-body">
               <label id="label-led-0">Izquierda</label>
-              <input type="range" class="custom-range" min="0" max="255" id="input-led-0">
+              <div class="div-rangeGroup" data-strip="0">
+              <input type="range" class="custom-range" data-strip="0" data-led="a" min="0" max="255" value="0" id="input-led-0">
+              </div>
             </div>
           </div>
           <div class="card bg-dark text-white mt-3">
             <div class="card-body">
               <label id="label-led-1">Derecha</label>
-              <input type="range" class="custom-range" min="0" max="255" id="input-led-1">
+              <div class="div-rangeGroup" data-strip="1">
+                <input type="range" class="custom-range" data-strip="1" data-led="a" min="0" max="255" value="0" id="input-led-1">
+              </div>
             </div>
           </div>
           <div class="card bg-dark text-white mt-3">
             <div class="card-body">
               <label id="label-led-2">RGB</label>
-              <input type="range" class="custom-range" min="0" max="255" id="input-led-2r">
-              <input type="range" class="custom-range" min="0" max="255" id="input-led-2g">
-              <input type="range" class="custom-range" min="0" max="255" id="input-led-2b">
-              <input type="range" class="custom-range" min="0" max="100" id="input-led-2br">
+              <div class="div-rangeGroup" data-strip="2">
+                <input type="range" class="custom-range" data-strip="2" data-led="r" min="0" max="255" value="0" id="input-led-2r">
+                <input type="range" class="custom-range" data-strip="2" data-led="g" min="0" max="255" value="0" id="input-led-2g">
+                <input type="range" class="custom-range" data-strip="2" data-led="b" min="0" max="255" value="0" id="input-led-2b">
+                <input type="range" class="custom-range" data-strip="2" data-led="br" min="0" max="100" value="0" id="input-led-2br">
+              </div>
             </div>
           </div>
           <div class="card bg-dark text-white mt-3">

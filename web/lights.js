@@ -1,56 +1,36 @@
-fetch(`${url}/0/admin/led/getValue/1`, {method: 'POST'})
-  .then( function(response) {
-    if (response.status !== 200) return false
-      response.json().then(function(data) {
-        document.querySelector('#input-led-1').value = data
-      }
-    );
-  })
-  .catch(err => false);
-
-fetch(`${url}/0/admin/led/getValue/0`, {method: 'POST'})
-  .then( function(response) {
-    if (response.status !== 200)  return false;
-      response.json().then(function(data) {
-        document.querySelector('#input-led-0').value = data
-      }
-    );
-  })
-  .catch(err => false);
-      
-function lights_queryValue(arg){
-
-  arg = arg.join('/')
-  fetch(`${url}/0/admin/led/getValue/${arg}`, {method: 'POST'})
-    .then( function(response) {
-      if (response.status !== 200)  return false;
-        response.json().then(function(data) {
-          console.log(data)
-        }
-      );
-    })
-    .catch(err => false);
+function refreshValue(strip, values){
+  var values = values.split(',')
 }
 
-function setTarget(led, value){
-	return `0-admin-led-setTarget-${led}-1-${value}`
+function setTarget(dataset){
+  var strip = dataset.strip
+  const leds = document.querySelectorAll(`input[data-strip='${strip}']`)
+  var values = []
+  for (const led of leds) {
+    if(led.dataset.led != 'br'){
+      values.push(led.value)
+    }
+  }
+  var n = values.length
+  values = values.join('-')
+  return `comm/0-admin-led-setTarget-${strip}-${n}-${values}`
 }
 
+function getValue(strip){
+  return `comm/0-admin-led-getValues-${strip}`
+} 
 
-izq = document.querySelector('#input-led-0')
-izq.addEventListener('input', function () {
-	sendCommand(setTarget(0, izq.value))
-}, false);
+for (const a of document.querySelectorAll("input[type='range']")){
+  a.addEventListener('input', function(e){
+    sendCommand(setTarget(e.target.dataset))
+  });
+}
 
-der = document.querySelector('#input-led-1')
-der.addEventListener('input', function () {
-	sendCommand(setTarget(1, der.value))
-})
-
+for (const a of document.querySelectorAll(".div-rangeGroup")){
+  console.log(sendCommand(getValue(a.dataset.strip))) 
+}
 
 customCommand = document.querySelector('#input-customCommand')
 customCommand.addEventListener('change', function(){
 	console.log(customCommand.value)
-	sendCommand(customCommand.value)
-
 })
