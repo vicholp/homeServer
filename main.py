@@ -133,6 +133,7 @@ def commToArduino(string, serial):
 
     action = string[1]
     string = '-'.join(string)
+    print(action, string)
     if (action == 'admin'):
         return write(serial, string+"|", action="query")
     else:
