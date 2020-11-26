@@ -70,7 +70,7 @@ def commNew(string, serial):
     def commValidateCommand(arg):
         try:
             comm.split('-')
-            int(comm[1])/1
+            int(comm[0])/1
             return True
         except:
             print('ERROR - Comando invalido')
