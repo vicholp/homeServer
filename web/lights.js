@@ -33,7 +33,7 @@ function lights_queryValue(arg){
 }
 
 function setTarget(led, value){
-	return `0/admin/led/setTarget/${led}/1/${value}`
+	return `0-admin-led-setTarget-${led}-1-${value}`
 }
 
 

@@ -3,8 +3,13 @@ const beet_port = "9000"
 
 
 function sendCommand(cmd){
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", `${url}/${cmd}`, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send();
+  fetch(`${url}/comm/${cmd}`, {method: 'POST'})
+    .then( function(response) {
+      if (response.status !== 200)  return false;
+        response.json().then(function(data) {
+          console.log(data)
+        }
+      );
+    })
+    .catch(err => false);
 }

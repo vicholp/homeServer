@@ -78,7 +78,8 @@ def commNew(string, serial):
 
     url = string.split('/')
     comm = url[1]
-
+    print(url)
+    print(comm)
     if url[0] == 'comm':
         if(not commValidateCommand(comm)):
             return "Not valid"
