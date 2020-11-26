@@ -84,7 +84,7 @@ def commNew(string, serial):
         if(not commValidateCommand(comm)):
             return "Not valid"
 
-        return commToDevice('-'.join(comm[1:]), serial)
+        return commToDevice(comm.split('-'), serial)
 
     else:
         return "Not found"
