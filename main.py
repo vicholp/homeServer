@@ -78,6 +78,7 @@ def commNew(string, serial):
 
     url = string.split('/')
     comm = url[1]
+    print(comm)
     if url[0] == 'comm':
         if(not commValidateCommand(comm)):
             return "Not valid"
@@ -121,7 +122,7 @@ def commToArduino(string, serial):
         print( "<- Arduino (query) - " +  s, end='' )
         while(serial.in_waiting):    
             i = serial.readline().decode("utf-8");
-            print( "<- Arduino (query)- " +  i, end='' )
+            print( "<- Arduino (query) - " +  i, end='' )
 
         return s;
 
