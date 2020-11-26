@@ -110,7 +110,7 @@ def commToArduino(string, serial):
         time.sleep(w)
 
         while(serial.in_waiting):
-            print( "<- Arduino - " +  serial.readline().decode("utf-8"), end='' )
+            print( "<- Arduino (log)- " +  serial.readline().decode("utf-8"), end='' )
 
         return "OK"
 
@@ -118,10 +118,10 @@ def commToArduino(string, serial):
         time.sleep(w)
 
         s = serial.readline().decode("utf-8");
-        print( "<- Arduino - " +  s, end='' )
+        print( "<- Arduino (query) - " +  s, end='' )
         while(serial.in_waiting):    
             i = serial.readline().decode("utf-8");
-            print( "<- Arduino - " +  i, end='' )
+            print( "<- Arduino (query)- " +  i, end='' )
 
         return s;
 
