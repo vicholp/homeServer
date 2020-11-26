@@ -746,7 +746,7 @@
 			]
 		]
 	],
-	"build_varint": "",
+	"build_varint": "Upload",
 	"command_palette":
 	{
 		"height": 392.0,
@@ -1562,6 +1562,8 @@
 								"bh_round_content"
 							],
 							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -1706,8 +1708,8 @@
 						"selection":
 						[
 							[
-								828,
-								828
+								630,
+								899
 							]
 						],
 						"settings":
@@ -1719,8 +1721,8 @@
 								{
 									"1":
 									[
-										856,
-										857
+										900,
+										901
 									]
 								},
 								"icon":
@@ -1735,8 +1737,8 @@
 								{
 									"1":
 									[
-										818,
-										819
+										603,
+										604
 									]
 								},
 								"unmatched":
@@ -1809,7 +1811,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 528.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1945,7 +1947,7 @@
 		[
 			[
 				"",
-				"D:\\dev\\Proyectos\\Arduino\\arduino.sublime-project"
+				"D:\\dev\\Proyectos\\Akatsuki\\akatsuki.sublime-project"
 			],
 			[
 				"math",
