@@ -133,6 +133,8 @@ def commToArduino(string, serial):
         return "OK"
 
     action = string[1]
+    string = '-'.join(string)
+    print('string', string)
     if (action == 'admin'):
         return write(serial, string+"|", action="parse")
     else:
