@@ -98,7 +98,9 @@ def commToDevice(string, serial):
 
 def commToArduino(string, serial):
     def write(serial, string, action="", w=.01):
+        print("Flush 1...")
         flush(serial, 0)
+        print("Write")
         serial.write( bytes(string, encoding='utf-8') );
         if(action == "read"):
             r = log(serial, w)
@@ -106,7 +108,7 @@ def commToArduino(string, serial):
             r =  query(serial, w)
         elif(action == "flush"):
             r = flush(serial, w)
-
+        print("Flush 2...")
         flush(serial, 0)
         return r
 
