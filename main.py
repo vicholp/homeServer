@@ -98,6 +98,7 @@ def commToDevice(string, serial):
 
 def commToArduino(string, serial):
     def write(serial, string, action="", w=.01):
+        flush(serial, w)
         serial.write( bytes(string, encoding='utf-8') );
         if(action == "read"):
             return log(serial, w)
@@ -105,31 +106,35 @@ def commToArduino(string, serial):
             return query(serial, w)
         elif(action == "flush"):
             return flush(serial, w)
+
+        flush(serial, w)
         return True
 
     def log(serial, w=.01):
         time.sleep(w)
 
         while(serial.in_waiting):
-            print( "<- Arduino (log)- " +  serial.readline().decode("utf-8"), end='' )
+            print( "<- Arduino (loger)- " +  serial.readline().decode("utf-8"), end='' )
 
         return "OK"
 
     def query(serial, w=.01):
         time.sleep(w)
 
-        s = serial.readline().decode("utf-8");
-        print( "<- Arduino (query) - " +  s, end='' )
-        while(serial.in_waiting):    
-            i = serial.readline().decode("utf-8");
-            print( "<- Arduino (query) - " +  i, end='' )
+        if serial.in_waiting:
+            print( "<- Arduino (query) - " +  serial.readline().decode("utf-8"), end='' )
 
-        return s;
+        if serial.in_waiting:
+            r = serial.readline().decode("utf-8")
+            print( "<- Arduino (anwer) - " +  r, end='' )
+
+        return r;
 
     def flush(serial, w=.01):
         time.sleep(w)
+
         while(serial.in_waiting):
-            serial.readline()
+            print( "<- Arduino (flush) - " +  serial.readline().decode("utf-8"), end='' )
         return "OK"
 
     action = string[1]

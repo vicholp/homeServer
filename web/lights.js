@@ -17,7 +17,7 @@ function setTarget(dataset){
 }
 
 function getValue(strip){
-  return `comm/0-admin-led-getValues-${strip}`
+  return `comm/0-admin-led-getValue-${strip}`
 } 
 
 for (const a of document.querySelectorAll("input[type='range']")){
