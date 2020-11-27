@@ -101,14 +101,14 @@ def commToArduino(string, serial):
         flush(serial, w)
         serial.write( bytes(string, encoding='utf-8') );
         if(action == "read"):
-            return log(serial, w)
+            r = log(serial, w)
         elif(action == "query"):
-            return query(serial, w)
+            r =  query(serial, w)
         elif(action == "flush"):
-            return flush(serial, w)
+            r = flush(serial, w)
 
         flush(serial, w)
-        return True
+        return r
 
     def log(serial, w=.01):
         time.sleep(w)
@@ -120,7 +120,7 @@ def commToArduino(string, serial):
 
     def query(serial, w=.01):
         time.sleep(w)
-
+        r = ""
         if serial.in_waiting:
             print( "<- Arduino (query) - " +  serial.readline().decode("utf-8"), end='' )
 
