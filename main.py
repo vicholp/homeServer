@@ -248,7 +248,9 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        self.wfile.write(bytes(commNew(self.path[1:], SERIAL), "utf-8"))
+        answer = commNew(self.path[1:], SERIAL)
+        console.log(answer)
+        self.wfile.write(bytes(answer, "utf-8"))
 
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
