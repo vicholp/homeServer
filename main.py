@@ -249,7 +249,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html")
         self.end_headers()
         answer = commNew(self.path[1:], SERIAL)
-        console.log(answer)
+        console.log("POST Answer", answer)
         self.wfile.write(bytes(answer, "utf-8"))
 
     def end_headers(self):
