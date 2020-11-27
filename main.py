@@ -97,7 +97,7 @@ def commToDevice(string, serial):
         return commToArduino(string, serial)
 
 def commToArduino(string, serial):
-    def write(serial, string, action="", w=.01):
+    def write(serial, string, action="", w=.05):
         print("Flush 1...")
         flush(serial, 0)
         print("Write")
