@@ -65,9 +65,11 @@ function getBright(strip){
 } 
 
 for (const a of document.querySelectorAll("input[type='range']")){
-  a.addEventListener('input', function(e){
-    sendCommand(setTarget(e.target.dataset))
-  });
+  if(a.dataset.led != 'br'){
+    a.addEventListener('input', function(e){
+      sendCommand(setTarget(e.target.dataset))
+    });
+  }
 }
 
 for (const a of document.querySelectorAll("input[type='range'][data-led='br']")){
