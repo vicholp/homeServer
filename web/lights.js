@@ -12,7 +12,6 @@ function refreshBrigth(strip, value){
   if(e){
       e.value = value[0]
   }
-  
 
 }
 
@@ -63,6 +62,13 @@ function getBright(strip){
       })
     .catch(err => false);
 } 
+
+function setColor(strip, color){
+  var n = color.length
+  var values = color.join('-')
+  sendCommand(`comm/0-admin-led-setTarget-${strip}-${n}-${color}`)
+  refreshValue(2, JSON.stringify(color))
+}
 
 for (const a of document.querySelectorAll("input[type='range']")){
   if(a.dataset.led != 'br'){
