@@ -81,7 +81,7 @@ function beet_setPlayingDevice(device, play=false){
 
 function beet_search(arg){
 	document.querySelector("#row-songResults").hidden = true;
-	fetch(`${url}:${beet_port}/item/query/${arg}`, {method: 'GET'})
+	fetch(`${url_host}:${beet_port}/item/query/${arg}`, {method: 'GET'})
 	  .then( function(response) {
 	    if (response.status !== 200) return false;
 	      response.json().then(function(data) {
@@ -136,9 +136,9 @@ function beet_info(playlist, item=0){
 
 function beet_remoteAction(action, arg=false){
 	if (arg){
-		fetch(`${url}/1/player/${action}/${arg}`, {method: 'POST'})
+		fetch(`${url_host}/1/player/${action}/${arg}`, {method: 'POST'})
 	}else{
-		fetch(`${url}/1/player/${action}`, {method: 'POST'})
+		fetch(`${url_host}/1/player/${action}`, {method: 'POST'})
 	}
 
 }
@@ -148,16 +148,16 @@ function beet_play(list, item){
 	song = JSON.parse(sessionStorage.getItem(list))[item]
 	id = song.id
 
-	setMediaMetadata(song, `${url}:${beet_port}/album/${song.album_id}/art`)
+	setMediaMetadata(song, `${url_host}:${beet_port}/album/${song.album_id}/art`)
 	sessionStorage.setItem("playlist_actual", item);
 	sessionStorage.setItem("playlist_nombre", list);
 
-	player.src = `${url}:${beet_port}/item/${id}/file`
+	player.src = `${url_host}:${beet_port}/item/${id}/file`
 
 	document.querySelector("#text-songTitle").textContent = song.title
 	document.querySelector("#text-songArtist").textContent = song.artist
 
-	document.querySelector("#img-songArt").src = `${url}:${beet_port}/album/${song.album_id}/art`
+	document.querySelector("#img-songArt").src = `${url_host}:${beet_port}/album/${song.album_id}/art`
 
 	document.querySelector("#row-player").hidden = false
 
