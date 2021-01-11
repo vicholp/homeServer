@@ -33,5 +33,3 @@ def runPing(host):
 	command = ['ping', param, '1', '192.168.1.2']
 
 	return subprocess.call(command) == 0
-runSpeedTest()
-input()
