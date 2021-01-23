@@ -16,7 +16,14 @@ def test():
 def index():
     return render_template('notflix/index.html')
 
+@bp.route('/movie', methods=["GET"])
+def movie():
+    return render_template('notflix/movie.html')
+
+@bp.route('/search', methods=["GET"])
+def search():
+    return render_template('notflix/search.html')
 
 
 
-        
+

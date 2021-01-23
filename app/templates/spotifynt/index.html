@@ -1,4 +1,4 @@
-{% extends "lights/template.html" %}
+{% extends "spotifynt/template.html" %}
 
 {% block scripts %}
   <script defer type="text/javascript" src="{{url_for('static', filename='spotifynt/spotifynt.js')}}"></script>
@@ -18,14 +18,11 @@
                 <div class="card-body text-white">
                   <h5 id="text-songTitle" class="card-title"></h5>
                   <h6 id="text-songArtist" class="card-subtitle mb-2 text-muted"></h6>
-                  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-4" role="group" aria-label="First group">
+                  <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-group mr-4" role="group">
                       <button id="btn-prevSong" class="btn mdi text-white mdi-skip-previous"></button>
                       <button id="btn-player-play" class="btn mdi text-white mdi-pause"></button>
                       <button id="btn-nextSong" class="btn mdi text-white mdi-skip-next"></button>
-                    </div>
-                    <div class="btn-group mr-2" role="group" aria-label="Second group">
-                      <button id="btn-remotePlay" class="btn btn-secondary mdi text-white mdi-remote" onclick="beet_setPlayingDevice('notebook', true)"> RemotePlay</button>
                     </div>
                   </div>
                 </div>
@@ -67,7 +64,6 @@
                     <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:rhy')">🎺 rhy</button>
                     <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:roc')">🎸 roc</button>
                     <button type="button" class="dropdown-item" onclick="Search('genre_rosamerica:spe')">📻 spe</button>
-
                   </div>
                 </div>
                 <div class="dropdown mr-2">

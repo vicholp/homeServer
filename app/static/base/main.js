@@ -1,6 +1,9 @@
 const url_arduino = "http://192.168.1.6"
 const url_host = "http://192.168.1.5"
 const beet_port = "9000"
+const url_torrent = "http://192.168.1.8:8080"
+
+let torrentCookie = ""
 
 async function sendCommand(cmd){
 
@@ -18,3 +21,4 @@ async function sendCommand(cmd){
     .then(result => result)
     .catch(error => console.error(error));
 }
+

@@ -8,6 +8,7 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
+    app.templates_auto_reload  = True
 
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
@@ -19,20 +20,17 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import notflix
-    app.register_blueprint(notflix.bp)
-
-    from . import lights
-    app.register_blueprint(lights.bp)
-
-    from . import spotifynt
-    app.register_blueprint(spotifynt.bp)
-
-    from . import home
-    app.register_blueprint(home.bp)
-
     @app.route('/test')
     def hello():
         return 'OK'
+
+    from . import notflix
+    from . import lights
+    from . import spotifynt
+    from . import home
+    app.register_blueprint(notflix.bp)
+    app.register_blueprint(lights.bp)
+    app.register_blueprint(spotifynt.bp)
+    app.register_blueprint(home.bp)
 
     return app

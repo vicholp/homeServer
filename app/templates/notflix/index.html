@@ -1,9 +1,60 @@
 {% extends "notflix/template.html" %}
 
+{% block scripts %}
+  <script defer type="text/javascript" src="{{url_for('static', filename='notflix/notflix.js')}}"></script>
+
+  <script defer type="text/javascript" src="{{url_for('static', filename='base/torrent.js')}}"></script>
+  <script defer type="text/javascript" src="{{url_for('static', filename='notflix/index.js')}}"></script>
+
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid mt-3">
-    <div class="container-xl">
+  <div class="container-xl">
+    <div class="row">
+      <div class="col">
+        <div class="card bg-dark">
+          <div class="card-body text-white">
+            <input id="input-search" type="text" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="card bg-dark">
+          <div id="card-downloading" class="card-body text-white" >
+            <template id="template-card-downloading">
+              <div class="card bg-dark border-white mt-2">
+                <div class="card-body text-white">
+                  <h5 class="card-title">John Wick Chapter 3</h5>
+                  <div class="progress" style="height: 3px">
+                    <div class="progress-bar bg-danger" role="progressbar"></div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="card bg-dark">
+          <div class="card-body text-white">
+            <h5 class="card-tile">Mi lista</h5>
+            <div class="row row-cols-1 row-cols-md-3 mt-3">
+              <div class="col mb-4">
+                <div class="card border-0">
+                  <img src="" class="rounded" >
+                </div>
+              </div>
+            </div>
+          </div>
 
+        </div>
+      </div>
     </div>
   </div>
+</div>
 {% endblock %}

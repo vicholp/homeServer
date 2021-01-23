@@ -1,5 +1,10 @@
 beet_setPlayingDevice('self')
 
+window.addEventListener('beforeunload', function (e) {
+    e.preventDefault();
+    e.returnValue = '';
+});
+
 search = document.querySelector('#input-search')
   search.addEventListener('change', function(){
     console.log('buscando:' + search.value)
