@@ -25,11 +25,11 @@ def create_app(test_config=None):
         return 'OK'
 
     from . import notflix
-    from . import lights
+    from . import huei
     from . import spotifynt
     from . import home
     app.register_blueprint(notflix.bp)
-    app.register_blueprint(lights.bp)
+    app.register_blueprint(huei.bp)
     app.register_blueprint(spotifynt.bp)
     app.register_blueprint(home.bp)
 

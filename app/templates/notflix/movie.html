@@ -1,6 +1,7 @@
 {% extends "notflix/template.html" %}
 
 {% block scripts %}
+  <script defer type="text/javascript" src="{{url_for('static', filename='notflix/notflix.js')}}"></script>
   <script defer type="text/javascript" src="{{url_for('static', filename='notflix/movie.js')}}"></script>
   <script defer type="text/javascript" src="{{url_for('static', filename='base/torrent.js')}}"></script>
 {% endblock %}
@@ -11,7 +12,7 @@
     <div class="container-xl" >
       <div class="row" >
         <div class="col-12 col-sm-9">
-          <div class="card border-0 shadow" style="background-color: rgba(255,255,255,0.10)">
+          <div class="card border-0 shadow bg-dark" >
             <div class="row no-gutters">
               <div class="col-sm-4 p-3">
                 <img id="movie-header" src="" class="card-img h-100">
@@ -27,7 +28,7 @@
           </div>
         </div>
         <div class="col-12 col-sm-3 mt-3 mt-sm-0 ">
-          <div class="card shadow" style="background-color: rgba(255,255,255,0.1)">
+          <div class="card shadow bg-dark">
             <div id="btnGroup-download" class="card-body text-white">
               <h5 class="card-title mb-4">Descargas</h5>
               <template id="template-btn-download">
@@ -38,8 +39,8 @@
         </div>
       </div>
       <div class="row mt-5">
-        <div class="col-4">
-          <div class="card shadow bg-dark" >
+        <div class="col-12 col-sm-4">
+          <div class="card shadow bg-dark mt-sm-0" >
             <div class="card-body ">
               <h5 class="card-title text-white mb-4">Detalles</h5>
               <button id="movie-duration" class="btn btn-block text-white bg-dark text-left mdi mdi-clock-outline"></button>
@@ -49,13 +50,13 @@
 
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-4 mt-3 mt-sm-0">
           <div class="card shadow bg-dark">
             <div class="card-body">
               <h5 class="card-title text-white mb-4">Calificaciones</h5>
-              <button id="movie-metacritic" class="btn btn-block text-white bg-dark" style="border-color: rgba(226, 182, 22, 0.2)"> Metacritic: </button>
-              <button id="movie-rotten" class="btn btn-block text-white bg-dark"style="border-color: rgba(250, 50, 10, 0.2)"> Rotten Tomatoes: 89%</button>
-              <a id="movie-imdbr" class="btn btn-block text-white  bg-dark" style="border-color: rgba(226, 182, 22, 0.2)"> IMDb: </a>
+              <button id="movie-Metacritic" class="btn btn-block text-white bg-dark" style="border-color: rgba(226, 182, 22, 0.2)"></button>
+              <button id="movie-Rotten-Tomatoes" class="btn btn-block text-white bg-dark" style="border-color: rgba(250, 50, 10, 0.2)"></button>
+              <button id="movie-Internet-Movie-Database" class="btn btn-block text-white  bg-dark" style="border-color: rgba(226, 182, 22, 0.2)"></button>
             </div>
           </div>
         </div>

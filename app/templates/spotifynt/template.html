@@ -2,3 +2,10 @@
 
 {% block title %} Spotifynt {% endblock %}
 {% block navbar_title %} Spotifynt {% endblock %}
+
+{% block app_scripts %}
+  <script defer type="text/javascript" src="{{url_for('static', filename='spotifynt/beet.js')}}"></script>
+  <script defer type="text/javascript" src="{{url_for('static', filename='spotifynt/list.js')}}"></script>
+  <script defer type="text/javascript" src="{{url_for('static', filename='spotifynt/metadata.js')}}"></script>
+  <script defer type="text/javascript" src="{{url_for('static', filename='spotifynt/spotifynt.js')}}"></script>
+{% endblock %}

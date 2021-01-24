@@ -3,22 +3,13 @@ const url_host = "http://192.168.1.5"
 const beet_port = "9000"
 const url_torrent = "http://192.168.1.8:8080"
 
-let torrentCookie = ""
 
-async function sendCommand(cmd){
-
-  var formdata = new FormData();
-  formdata.append("command", cmd);
-
-  var requestOptions = {
-    method: 'POST',
-    body: formdata,
-    redirect: 'follow'
-  };
-
-	return fetch(`${url_arduino}/api/command`, requestOptions)
-    .then(response => response.json())
-    .then(result => result)
-    .catch(error => console.error(error));
+function shuffle(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array
 }
-

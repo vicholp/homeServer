@@ -11,7 +11,8 @@
     <div class="row">
       <div class="col">
         <div class="card bg-dark">
-          <div class="card-body text-white">
+          <div class="card-body ">
+            <h5 class="card-title text-white"> Busqueda</h5>
             <input id="input-search" type="text" class="form-control">
           </div>
         </div>
@@ -19,19 +20,21 @@
     </div>
     <div class="row mt-3">
       <div class="col">
-        <div id="row-movies" class="row row-cols-1 row-cols-sm-3 row-cols-md-3 mt-3">
+        <div id="row-movies" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-3">
           <template id="template-card-movie">
             <a id="template-movie-details" href="" style="color: inherit; text-decoration: inherit;">
             <div class="col mb-4">
-              <div class="card mb-3 bg-dark">
-                <div class="row no-gutters">
-                  <div class="col-sm-4">
-                    <img id="template-img-header" src="" class="card-img h-100">
-                  </div>
-                  <div class="col-sm-8">
-                    <div class="card-body text-white">
-                      <h5 id="template-movie-title" class="card-title"></h5>
-                      <h6 id="template-movie-year" class="card-subtitle mb-2 text-muted"></h6>
+              <div class="background">
+                <div class="card border-0  mb-3 bg-dark">
+                  <div class="row no-gutters">
+                    <div class="col-sm-4 p-3">
+                      <img id="template-img-header" src="" class="card-img h-100">
+                    </div>
+                    <div class="col-sm-8">
+                      <div class="card-body text-white">
+                        <h5 id="template-movie-title" class="card-title text-white"></h5>
+                        <h6 id="template-movie-year" class="card-subtitle mb-2 text-muted"></h6>
+                      </div>
                     </div>
                   </div>
                 </div>

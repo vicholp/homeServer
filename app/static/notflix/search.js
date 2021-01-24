@@ -29,6 +29,5 @@ function getMovieDetails(arg){
 
     return movies
 
-
   })
 }

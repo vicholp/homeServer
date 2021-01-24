@@ -7,8 +7,8 @@ function getListTorrentDownloading(){
   .then(response => response.json())
   .then(response => response)
 }
-function addTorrent(magnet, title){
-  fetch(`${url_torrent}/api/v2/torrents/add?urls=${magnet}&category=YTS&autoTMM=true`, {})
+function addTorrent(magnet, name){
+  fetch(`${url_torrent}/api/v2/torrents/add?urls=${magnet}&category=YTS&autoTMM=true&rename=${name}`, {})
   .then(response => response.json())
   .then(response => console.log(response))
 }

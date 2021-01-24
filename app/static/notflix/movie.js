@@ -1,12 +1,8 @@
 const OMDB_key = 'e7ddb619'
 
 let params = (new URL(document.location)).searchParams;
-getMovieDetails(params.get('id'))
 
-
-function getMovieDetails(id){
-  fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`, {method: "GET"})
-  .then(response => response.json())
+ytsGetMovieDetails(params.get('id'))
   .then(movie => {
     console.log(movie);
 
@@ -24,10 +20,10 @@ function getMovieDetails(id){
       let t = document.querySelector("#template-btn-download").cloneNode(true).content
       t.querySelector("button").textContent = `${torrent.quality}`
       t.querySelector("button").dataset.magnet = magnet(movie.data.movie.title, torrent.hash)
-      t.querySelector("button").dataset.title = movie.data.movie.title
+      t.querySelector("button").dataset.name = movie.data.movie.id
       t.querySelector("button").addEventListener('click', function (e) {
         let b = e.target
-        addTorrent(b.dataset.magnet,b.dataset.title)
+        addTorrent(b.dataset.magnet,b.dataset.name)
       })
       btns.appendChild(t);
     }
@@ -39,7 +35,7 @@ function getMovieDetails(id){
     getMovieScore(movie.data.movie.imdb_code)
     return movie;
   })
-}
+
 
 
 function magnet(title, hash){
@@ -50,9 +46,9 @@ function getMovieScore(id){
   .then(response => response.json())
   .then(movie => {
     console.log(movie)
-    r = movie
-    document.querySelector('#movie-imdbr').textContent = movie.Ratings[0].Source + ": " +  movie.Ratings[0].Value
-    document.querySelector('#movie-metacritic').textContent = movie.Ratings[1].Source + ": " +  movie.Ratings[1].Value
-    document.querySelector('#movie-rotten').textContent = movie.Ratings[2].Source + ": " +  movie.Ratings[2].Value
+
+    for (c of movie.Ratings){
+      document.querySelector(`#movie-${c.Source.replaceAll(' ', '-')}`).textContent = c.Source + ": " +  c.Value
+    }
   })
 }

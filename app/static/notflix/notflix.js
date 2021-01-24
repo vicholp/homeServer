@@ -13,3 +13,8 @@ function getLastUploaded(){
 
   })
 }
+
+async function ytsGetMovieDetails(id){
+  return fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`, {method: "GET"})
+  .then(response => response.json())
+}

@@ -1,1 +1,44 @@
-{% extends "base/template.html" %}
+{% extends "home/template.html" %}
+
+{% block content %}
+<div class="container-fluid p-0" style="background-size: cover;">
+  <div id="layer" class="pt-3 pb-5" style="background: linear-gradient(180deg, rgba(18,18,18,0.4) 0%, rgba(18,18,18,1) 100%);">
+    <div class="container-xl">
+      <div class="row">
+        <div class="col">
+          <a href="/huei" style="color: inherit; text-decoration: inherit;">
+          <div class="card" style="background: linear-gradient(90deg, rgba(255,0,0,0.1) 0%, rgba(245,255,0,0.1) 39%, rgba(0,255,0,0.1) 61%, rgba(0,0,255,0.1) 100%); border-color: rgba(255,255,255,0.4) !important">
+            <div class="card-body text-white">
+              <h5 class="card-title text-white mb-4"> Huei</h5>
+              <p class="card-text text-white-normal">Explora la iluminación inteligente de Huei.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <a href="/notflix" style="color: inherit; text-decoration: inherit;">
+          <div class="card border" style="background-color: rgba(222, 9, 18, 0.2); border-color: rgba(255,255,255,0.4) !important">
+            <div class="card-body text-white">
+              <h5 class="card-title text-white mb-4">Notflix</h5>
+              <p class="card-text text-white-normal">Películas y series ilimitadas y mucho más.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <a href="/spotifynt" style="color: inherit; text-decoration: inherit;">
+          <div class="card border" style="background-color: rgba(29, 208, 93, 0.2); border-color: rgba(255,255,255,0.4) !important">
+            <div class="card-body text-white">
+              <h5 class="card-title text-white mb-4">Spotifyn't</h5>
+              <p class="card-text text-white-normal">Escucha a todos tus artistas favoritos sin interrupciones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

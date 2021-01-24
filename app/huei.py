@@ -5,7 +5,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 
-bp = Blueprint('lights', __name__, url_prefix='/lights')
+bp = Blueprint('huei', __name__, url_prefix='/huei')
 
 @bp.route('/test', methods=('GET', 'POST'))
 def test():
@@ -14,9 +14,8 @@ def test():
 
 @bp.route('/', methods=["GET"])
 def index():
-    return render_template('lights/index.html')
+    return render_template('huei/index.html')
 
 
 
 
-        
