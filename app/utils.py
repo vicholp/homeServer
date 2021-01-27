@@ -25,6 +25,7 @@ def runSpeedTest():
 
 	return download, upload
 
+
 def runPing(host):
 
 	param = '-n' if platform.system().lower()=='windows' else '-c'

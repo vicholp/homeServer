@@ -7,8 +7,14 @@ function getListTorrentDownloading(){
   .then(response => response.json())
   .then(response => response)
 }
-function addTorrent(magnet, name){
-  fetch(`${url_torrent}/api/v2/torrents/add?urls=${magnet}&category=YTS&autoTMM=true&rename=${name}`, {})
+function addTorrent(hash, id){
+
+  let body =
+  fetch(`http://localhost:5000/api/movies/download`, {
+    headers: {'Content-Type': 'application/json'},
+    method: "POST",
+    body: JSON.stringify({ "id": id, "hash": hash })
+  })
   .then(response => response.json())
   .then(response => console.log(response))
 }

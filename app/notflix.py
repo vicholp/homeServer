@@ -7,11 +7,6 @@ from flask import (
 
 bp = Blueprint('notflix', __name__, url_prefix='/notflix')
 
-@bp.route('/test', methods=('GET', 'POST'))
-def test():
-    if request.method == 'GET':
-        return {'response': "OK"}
-
 @bp.route('/', methods=["GET"])
 def index():
     return render_template('notflix/index.html')

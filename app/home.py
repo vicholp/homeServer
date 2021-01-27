@@ -9,8 +9,7 @@ bp = Blueprint('home', __name__, url_prefix='/')
 
 @bp.route('/test', methods=('GET', 'POST'))
 def test():
-    if request.method == 'GET':
-        return {'response': "OK"}
+    return {'response': "OK"}
 
 @bp.route('/', methods=["GET"])
 def index():
@@ -19,4 +18,3 @@ def index():
 
 
 
-        

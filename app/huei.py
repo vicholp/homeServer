@@ -7,11 +7,6 @@ from flask import (
 
 bp = Blueprint('huei', __name__, url_prefix='/huei')
 
-@bp.route('/test', methods=('GET', 'POST'))
-def test():
-    if request.method == 'GET':
-        return {'response': "OK"}
-
 @bp.route('/', methods=["GET"])
 def index():
     return render_template('huei/index.html')
