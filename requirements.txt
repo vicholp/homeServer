@@ -1,8 +1,7 @@
 flask
-pyserial
-keyboard
 wakeonlan
 speedtest-cli
 hurry.filesize
-python-vlc
 requests
+dload
+psutils

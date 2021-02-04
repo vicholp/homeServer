@@ -1,11 +1,11 @@
+from flask import current_app, Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify, send_from_directory
+
 import functools
 import requests
 
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
-)
 
 bp = Blueprint('notflix', __name__, url_prefix='/notflix')
+
 
 @bp.route('/', methods=["GET"])
 def index():
@@ -18,7 +18,3 @@ def movie():
 @bp.route('/search', methods=["GET"])
 def search():
     return render_template('notflix/search.html')
-
-
-
-

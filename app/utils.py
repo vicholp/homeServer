@@ -26,11 +26,9 @@ def runSpeedTest():
 	return download, upload
 
 
-def runPing(host):
-
+def runPing():
 	param = '-n' if platform.system().lower()=='windows' else '-c'
 
-	# Building the command. Ex: "ping -c 1 google.com"
-	command = ['ping', param, '1', '192.168.1.2']
+	command = ['ping', param, '1', 'google.com']
 
 	return subprocess.call(command) == 0

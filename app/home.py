@@ -1,11 +1,11 @@
+from flask import current_app, Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify, send_from_directory
+
 import functools
 import requests
 
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
-)
 
 bp = Blueprint('home', __name__, url_prefix='/')
+
 
 @bp.route('/test', methods=('GET', 'POST'))
 def test():
@@ -14,7 +14,3 @@ def test():
 @bp.route('/', methods=["GET"])
 def index():
     return render_template('home/index.html')
-
-
-
-

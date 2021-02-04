@@ -19,11 +19,12 @@ ytsGetMovieDetails(params.get('id'))
       console.log(torrent)
       let t = document.querySelector("#template-btn-download").cloneNode(true).content
       t.querySelector("button").textContent = `${torrent.quality}`
+      t.querySelector("button").dataset.url = torrent.url
       t.querySelector("button").dataset.hash = torrent.hash
       t.querySelector("button").dataset.id = movie.data.movie.id
       t.querySelector("button").addEventListener('click', function (e) {
         let b = e.target
-        addTorrent(b.dataset.hash, b.dataset.id)
+        addTorrent(b.dataset.url, b.dataset.id, b.dataset.hash)
       })
       btns.appendChild(t);
     }
