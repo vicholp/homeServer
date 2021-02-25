@@ -18,3 +18,7 @@ def movie():
 @bp.route('/search', methods=["GET"])
 def search():
     return render_template('notflix/search.html')
+
+@bp.route('/player', methods=["GET"])
+def player():
+    return render_template('notflix/player.html')

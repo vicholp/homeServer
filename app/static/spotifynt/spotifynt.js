@@ -1,3 +1,8 @@
+window.addEventListener('beforeunload', e => {
+  e.preventDefault();
+  e.returnValue = '';
+});
+
 navigator.mediaSession.setActionHandler('play', () => player_playpause('play'));
 navigator.mediaSession.setActionHandler('pause', () => player_playpause('pause'));
 navigator.mediaSession.setActionHandler('previoustrack', () => playlist_move(-1));
@@ -117,7 +122,13 @@ function player_show(song){
   document.querySelector("#text-songArtist").textContent = song.artist
   document.querySelector("#img-songArt").src = beet_getArtUrl(song.album_id)
   document.querySelector("#row-player").hidden = false;
-  document.querySelector(".container-fluid").style.backgroundImage = 'url(' + `${url_host}:${beet_port}/album/${song.album_id}/art` + ')'
+
+
+  const fac = new FastAverageColor();
+
+  fac.getColorAsync(document.querySelector("#img-songArt").src)
+      .then(color => document.querySelector(".container-fluid").style.backgroundColor = color.rgba)
+      .catch(e => console.log(e));
 }
 
 function player_playpause(action=""){

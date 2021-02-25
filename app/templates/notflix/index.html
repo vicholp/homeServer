@@ -1,67 +1,81 @@
 {% extends "notflix/template.html" %}
 
 {% block scripts %}
-  <script defer type="text/javascript" src="{{url_for('static', filename='notflix/notflix.js')}}"></script>
-
   <script defer type="text/javascript" src="{{url_for('static', filename='base/torrent.js')}}"></script>
+  <script defer type="text/javascript" src="{{url_for('static', filename='notflix/api.js')}}"></script>
   <script defer type="text/javascript" src="{{url_for('static', filename='notflix/index.js')}}"></script>
-
+  <script defer type="text/javascript" src="{{url_for('static', filename='notflix/notflix.js')}}"></script>
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid p-0" style="background-size: cover;">
-  <div id="layer" class="pt-3 pb-5" style="background: linear-gradient(180deg, rgba(18,18,18,0.4) 0%, rgba(18,18,18,1) 100%);">
-    <div class="container-xl">
-      <div class="row">
-        <div class="col">
-          <div class="card bg-dark shadow">
-            <div class="card-body">
-              <h5 class="card-title text-white mb-4"> Busqueda</h5>
-              <input id="input-search" type="text" class="form-control">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-6">
-          <div class="card bg-dark shadow">
-            <div id="card-downloading" class="card-body text-white" >
-              <h5 class="card-title text-white mb-4"> Descargas</h5>
-              <template id="template-card-downloading">
-                <a href="" style="color: inherit; text-decoration: inherit;">
-                <div class="card bg-dark mt-2">
-                  <div class="card-body text-white">
-                    <h6 class="card-subtitle mb-2 text-white-normal"></h6>
-                    <div class="progress bg-dark" style="height: 3px;">
-                      <div class="progress-bar bg-danger" role="progressbar"></div>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="card bg-dark">
-            <div class="card-body text-white">
-              <h5 class="card-title text-white text mb-4">Mi lista</h5>
-                <p class="text-center text-white-normal">En construccion</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mt-5">
-        <div class="col">
-           <div class="card bg-dark">
-              <div class="card-body text-white">
-                <h5 class="card-title text-white text mb-4">Mi biblioteca</h5>
-                  <p class="text-center text-white-normal">En construccion</p>
-              </div>
-            </div>
+<div class="container-xl">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6 ">
+      <div class="card bg-dark shadow">
+        <div class="card-body">
+          <h5 class="card-title text-white mb-4"> Busqueda</h5>
+          <input id="input-search" type="text" class="form-control">
         </div>
       </div>
     </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-3">
+      <div id="carousel-trending" class="carousel slide carousel-fade  data-ride="carousel" data-interval="10000">
+        <div class="carousel-inner rounded shadow"">
+          <div class="carousel-item active ">
+            <img src="" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block"></div>
+            <a href="" class="stretched-link"></a>
+          </div>
+          <div class="carousel-item">
+            <img src="" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block"></div>
+            <a href="" class="stretched-link"></a>
+          </div>
+          <div class="carousel-item ">
+            <img src="" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block"></div>
+            <a href="" class="stretched-link"></a>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel-trending" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-trending" role="button" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+    </div>
+    <div class="col-9 ">
+      <div class="card bg-dark h-100">
+        <div class="card-body text-white">
+          <h5 class="card-title text-white text mb-4">Mi lista</h5>
+            <p class="text-center text-white-normal">En construccion</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6">
+      <div class="card bg-dark shadow">
+        <div id="card-downloading" class="card-body text-white" >
+          <h5 class="card-title text-white mb-4"> Descargas</h5>
+          <template id="template-card-downloading">
+            <a href="" style="color: inherit; text-decoration: inherit;">
+            <div class="card bg-dark mt-2">
+              <div class="card-body text-white">
+                <h6 class="card-subtitle mb-2 text-white-normal"></h6>
+                <div class="progress bg-dark" style="height: 3px;">
+                  <div class="progress-bar bg-danger" role="progressbar"></div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 {% endblock %}

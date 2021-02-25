@@ -6,83 +6,83 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container-fluid p-0 p-sm-3" style="background: linear-gradient(#e6646510 0%, #9198e510 80%, #121212 100%);">
-    <div class="container-xl mb-5 pt-4">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <div id="card-led-0" class="card text-white" style="background-color: rgba(255,255,255, 0.05);">
-            <div class="card-body">
-              <h5 id="label-led-0" class="card-title">Izquierda</h5>
-              <div class="div-rangeGroup" data-strip="0">
-                <input type="range" class="custom-range" data-strip="0" data-led="br" data-bc="True" min="0" max="1023" value="0" id="input-led-0">
-              </div>
-              <div class="mt-2">
-                <button class="btn" style="background-color: rgba(255,255,255,0.05); color: #00000000" onclick="setColor(0, -1, 0)">O</button>
-                <button class="btn" style="background-color: rgba(255,255,255,0.12); color: #00000000" onclick="setColor(0, -1, 511)">O</button>
-                <button class="btn" style="background-color: rgba(255,255,255,0.20); color: #00000000" onclick="setColor(0, -1, 1023)">O</button>
 
-                <button class="btn ml-2 bg-dark text-white mdi mdi-clock-outline"></button>
-                <button class="btn bg-dark text-white mdi mdi-tune-vertical-variant"></button>
-                <button class="btn bg-dark text-white mdi mdi-bug"></button>
-              </div>
-            </div>
+<div class="container-xl ">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div id="card-led-0" class="card text-white" style="background-color: rgba(255,255,255, 0.05);">
+        <div class="card-body">
+          <h5 id="label-led-0" class="card-title">Izquierda</h5>
+          <div class="div-rangeGroup" data-strip="0">
+            <input type="range" class="custom-range" data-strip="0" data-led="br" data-bc="True" min="0" max="1023" value="0" id="input-led-0">
           </div>
-        </div>
-        <div class="col-12 col-md-6 mt-3 mt-md-0">
-          <div id="card-led-1" class="card text-white" style="background-color: rgba(255,255,255, 0.05);">
-            <div class="card-body">
-              <h5 id="label-led-0" class="card-title">Derecha</h5>
-              <div class="div-rangeGroup" data-strip="1">
-                <input type="range" class="custom-range" data-strip="1" data-led="br" data-bc="True" min="0" max="1023" value="0" id="input-led-1">
-              </div>
-              <div class="mt-2">
-                <button class="btn" style="background-color: rgba(255,255,255,0.05); color: #00000000" onclick="setColor(1, -1, 0)">O</button>
-                <button class="btn" style="background-color: rgba(255,255,255,0.12); color: #00000000" onclick="setColor(1, -1, 511)">O</button>
-                <button class="btn" style="background-color: rgba(255,255,255,0.20); color: #00000000" onclick="setColor(1, -1, 1023)">O</button>
+          <div class="mt-2">
+            <button class="btn" style="background-color: rgba(255,255,255,0.05); color: #00000000" onclick="setColor(0, -1, 0)">O</button>
+            <button class="btn" style="background-color: rgba(255,255,255,0.12); color: #00000000" onclick="setColor(0, -1, 511)">O</button>
+            <button class="btn" style="background-color: rgba(255,255,255,0.20); color: #00000000" onclick="setColor(0, -1, 1023)">O</button>
 
-                <button class="btn ml-2 bg-dark text-white mdi mdi-clock-outline"></button>
-                <button class="btn bg-dark text-white mdi mdi-tune-vertical-variant"></button>
-                <button class="btn bg-dark text-white mdi mdi-bug"></button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-12">
-          <div id="card-led-2" class="card text-white mt-3 margin bg-dark">
-            <div class="card-body">
-              <h5 id="label-led-2" class="card-title">RGB</h5>
-              <div class="div-rangeGroup" data-strip="2">
-                <input type="range" class="custom-range" data-strip="2" data-led="1" min="0" max="1023" value="0" id="input-led-2r">
-                <input type="range" class="custom-range" data-strip="2" data-led="2" min="0" max="1023" value="0" id="input-led-2g">
-                <input type="range" class="custom-range" data-strip="2" data-led="3" min="0" max="1023" value="0" id="input-led-2b">
-                <input type="range" class="custom-range" data-strip="2" data-led="br" data-bc="False" min="0" max="1023" value="0" id="input-led-2br">
-              </div>
-              <div>
-                <button class="btn" style="background-color: rgba(255,255,255,0.05); color: #00000000" onclick="setColor(2, -1, 0)">O
-                </button>
-                <button class="btn" style="background-color: rgba(255,255,255,0.20); color: #00000000" onclick="setColor(2, [1023,1023,1023], 1023)">O
-                </button>
-                <button class="btn" style="background-color: rgba(255,0,127,0.20); color: #00000000" onclick="setColor(2, [1023,0,511], 1023)">O
-                </button>
-
-                <button class="btn ml-2 bg-dark text-white mdi mdi-clock-outline"></button>
-                <button class="btn bg-dark text-white mdi mdi-tune-vertical-variant"></button>
-                <button class="btn bg-dark text-white mdi mdi-bug"></button>
-
-              </div>
-            </div>
-          </div>
-          <div class="card bg-dark text-white mt-3">
-            <div class="card-body">
-              <label for="input-customCommand">Comando</label>
-              <input id="input-customCommand" type="text" class="form-control">
-            </div>
+            <button class="btn ml-2 bg-dark text-white mdi mdi-clock-outline"></button>
+            <button class="btn bg-dark text-white mdi mdi-tune-vertical-variant"></button>
+            <button class="btn bg-dark text-white mdi mdi-bug"></button>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-12 col-md-6 mt-3 mt-md-0">
+      <div id="card-led-1" class="card text-white" style="background-color: rgba(255,255,255, 0.05);">
+        <div class="card-body">
+          <h5 id="label-led-0" class="card-title">Derecha</h5>
+          <div class="div-rangeGroup" data-strip="1">
+            <input type="range" class="custom-range" data-strip="1" data-led="br" data-bc="True" min="0" max="1023" value="0" id="input-led-1">
+          </div>
+          <div class="mt-2">
+            <button class="btn" style="background-color: rgba(255,255,255,0.05); color: #00000000" onclick="setColor(1, -1, 0)">O</button>
+            <button class="btn" style="background-color: rgba(255,255,255,0.12); color: #00000000" onclick="setColor(1, -1, 511)">O</button>
+            <button class="btn" style="background-color: rgba(255,255,255,0.20); color: #00000000" onclick="setColor(1, -1, 1023)">O</button>
+
+            <button class="btn ml-2 bg-dark text-white mdi mdi-clock-outline"></button>
+            <button class="btn bg-dark text-white mdi mdi-tune-vertical-variant"></button>
+            <button class="btn bg-dark text-white mdi mdi-bug"></button>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <div id="card-led-2" class="card text-white mt-3 margin bg-dark">
+        <div class="card-body">
+          <h5 id="label-led-2" class="card-title">RGB</h5>
+          <div class="div-rangeGroup" data-strip="2">
+            <input type="range" class="custom-range" data-strip="2" data-led="1" min="0" max="1023" value="0" id="input-led-2r">
+            <input type="range" class="custom-range" data-strip="2" data-led="2" min="0" max="1023" value="0" id="input-led-2g">
+            <input type="range" class="custom-range" data-strip="2" data-led="3" min="0" max="1023" value="0" id="input-led-2b">
+            <input type="range" class="custom-range" data-strip="2" data-led="br" data-bc="False" min="0" max="1023" value="0" id="input-led-2br">
+          </div>
+          <div>
+            <button class="btn" style="background-color: rgba(255,255,255,0.05); color: #00000000" onclick="setColor(2, -1, 0)">O
+            </button>
+            <button class="btn" style="background-color: rgba(255,255,255,0.20); color: #00000000" onclick="setColor(2, [1023,1023,1023], 1023)">O
+            </button>
+            <button class="btn" style="background-color: rgba(255,0,127,0.20); color: #00000000" onclick="setColor(2, [1023,0,511], 1023)">O
+            </button>
+
+            <button class="btn ml-2 bg-dark text-white mdi mdi-clock-outline"></button>
+            <button class="btn bg-dark text-white mdi mdi-tune-vertical-variant"></button>
+            <button class="btn bg-dark text-white mdi mdi-bug"></button>
+
+          </div>
+        </div>
+      </div>
+      <div class="card bg-dark text-white mt-3">
+        <div class="card-body">
+          <label for="input-customCommand">Comando</label>
+          <input id="input-customCommand" type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

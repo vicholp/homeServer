@@ -1,151 +1,153 @@
 {% extends "spotifynt/template.html" %}
 
+{% block scripts %}
+  <script src="https://unpkg.com/fast-average-color/dist/index.min.js"></script>
+{% endblock %}
+
 {% block content %}
-<div class="container-fluid p-0" style="background-size: cover;  background-position: center center; background-repeat: no-repeat; ">
-  <div id="layer" class="pt-3 pb-5" style="background: linear-gradient(180deg, rgba(18,18,18,0.80) 0vh, rgba(18,18,18,0.90) 50vh, rgba(18,18,18,1) 300vh);">
-    <div class="container-xl" >
-    	<div id="row-player" class="row mt-3" hidden>
-        <div class="col">
-          <div class="card mb-3 bg-dark shadow border-0">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img id="img-songArt" src="" class="card-img h-100" >
-              </div>
-              <div class="col-md-8">
-                <div class="card-body text-white">
-                  <h5 id="text-songTitle" class="card-title"></h5>
-                  <h6 id="text-songArtist" class="card-subtitle mb-2 text-muted"></h6>
-                  <div class="btn-toolbar" role="toolbar">
-                    <div class="btn-group mr-4" role="group">
-                      <button id="btn-prevSong" class="btn mdi text-white mdi-skip-previous"></button>
-                      <button id="btn-playpause" class="btn mdi text-white mdi-pause"></button>
-                      <button id="btn-nextSong" class="btn mdi text-white mdi-skip-next"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <div class="container-xl" >
+  	<div id="row-player" class="row mt-3" hidden>
+      <div class="col">
+        <div class="card mb-3 bg-dark shadow border-0">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img id="img-songArt" src="" class="card-img h-100" >
             </div>
-          </div>
-          <audio id="audio-player" src="" preload="auto">
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col">
-          <div class="card bg-dark text-white mt-3 shadow">
-            <div class="card-body">
-              <div class="row d-none">
-                <div class="col">
-                  <button class="btn btn-block bg-dark py-4 text-white">
-                    <div class="mdi mdi-speaker"></div>
-                    Artistas
-                  </button>
-                </div>
-                <div class="col">
-                  <button class="btn btn-block bg-dark py-4 text-white">
-                    <div class="mdi mdi-album"></div>
-                    Albums
-                  </button>
-                </div>
-                <div class="col">
-                  <button class="btn btn-block bg-dark py-4 text-white">
-                    <div class="mdi mdi-music"></div>
-                    Canciones
-                  </button>
-                </div>
-              </div>
-              <input id="input-search" type="text" class="form-control border-success">
-              <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
-                <button id="btn-resumePlaylist" class="btn btn-success mr-2" onclick="beet_resume()" hidden>Reanudar</button>
-                <div id="div-quickPlaylist" class="dropdown mr-2">
-                  <button class="btn bg-dark text-white border border-white dropdown-toggle mdi mdi-music-clef-treble" id="dropdownMenuButton" data-toggle="dropdown">
-                  </button>
-                  <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
-                    <button type="button" class="dropdown-item" onclick="search('mood_sad:0.7..')">🙁 mood_sad</button>
-                    <button type="button" class="dropdown-item" onclick="search('mood_happy:0.7..')">🙂 mood_happy</button>
-                    <button type="button" class="dropdown-item" onclick="search('mood_aggressive:0.7..')">😡 mood_aggressive</button>
-                    <button type="button" class="dropdown-item" onclick="search('mood_party:0.7..')">🎉 mood_party</button>
-                    <button type="button" class="dropdown-item" onclick="search('mood_acoustic:0.7..')">🎸 mood_acoustic</button>
-                    <button type="button" class="dropdown-item" onclick="search('mood_electronic:0.7..')">🔌 mood_electronic</button>
-                    <button type="button" class="dropdown-item" onclick="search('mood_relaxed:0.7..')">😑 mood_relaxed</button>
-                  </div>
-                </div>
-                <div id="div-quickPlaylist" class="dropdown mr-2">
-                  <button class="btn bg-dark text-white border border-white dropdown-toggle mdi mdi-music-clef-bass" id="dropdownMenuButton" data-toggle="dropdown">
-                  </button>
-                  <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
-                    <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:cla')">🎻 cla</button>
-                    <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:dan')">🎼 dan</button>
-                    <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:hip')">🎵 hip</button>
-                    <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:jaz')">🎷 jaz</button>
-                    <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:pop')">🎹 pop</button>
-                    <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:rhy')">🎺 rhy</button>
-                    <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:roc')">🎸 roc</button>
-                    <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:spe')">📻 spe</button>
-                  </div>
-                </div>
-                <div class="dropdown mr-2">
-                  <button class="btn bg-dark text-white border border-white dropdown-toggle mdi mdi-file-music-outline" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                  </button>
-                  <div class="dropdown-menu bd-dark">
-                    <button type="button" class="dropdown-item" onclick="search('format:FLAC')">🎶 FLAC</button>
-                    <button type="button" class="dropdown-item" onclick="search('format:MP3')">🎵 MP3</button>
+            <div class="col-md-8">
+              <div class="card-body text-white">
+                <h5 id="text-songTitle" class="card-title"></h5>
+                <h6 id="text-songArtist" class="card-subtitle mb-2 text-white"></h6>
+                <div class="btn-toolbar" role="toolbar">
+                  <div class="btn-group mr-4" role="group">
+                    <button id="btn-prevSong" class="btn mdi text-white mdi-skip-previous"></button>
+                    <button id="btn-playpause" class="btn mdi text-white mdi-pause"></button>
+                    <button id="btn-nextSong" class="btn mdi text-white mdi-skip-next"></button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row mt-3" id="row-songResults" hidden>
-      	<div class="col">
-      		<div class="card bg-dark table-striped table-borderless text-white mt-3">
-            <div class="card-body px-0 px-md-4">
-              <div class="btn-toolbar mb-4 mt-0" role="toolbar">
-                <div class="btn-group mr-2 mt-0">
-                  <button id="btn-shuffle" class="btn bg-spotifynt text-white mdi mdi-shuffle"></button>
-                </div>
-                <div class="btn-group">
-                  <button id="btn-startPlaylist" class="btn bg-spotifynt text-white mdi mdi-playlist-play">
-                    Start Playlist
-                  </button>
-                  <button type="button" class="btn bg-spotifynt text-white dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
-                  <div class="dropdown-menu">
-                    <button id="btn-appendPlaylist" class="dropdown-item"> Add to list</button>
-                  </div>
-                </div>
-              </div>
-              <template id="template-song">
-                <div class="card bg-dark mt-2">
-                  <div class="card-body py-2 ">
-                    <div class="row no-gutters align-items-center py-1">
-                      <div class="col-5">
-                        <h6 class="card-title text-white list-song-title">Por que no se van</h6>
-                        <h6 class="card-subtitle text-white-normal list-song-artist">Los prisioneros</h6>
-
-                      </div>
-                      <div class="col-5">
-                        <h6 class="card-subtitle mb-2 text-white-normal list-song-album">Album X</h6>
-                      </div>
-                      <div class="col-2 text-right">
-                        <div class="btn-group" role="group">
-                          <button class="btn btn-sm text-white bg-spotifynt mdi mdi-play list-song-play"></button>
-                          <button class="btn btn-sm text-white bg-spotifynt mdi mdi-dots-vertical list-song-info"></button>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </template>
-              <div id='cardBody-songs'>
-              </div>
-						</div>
-      		</div>
-      	</div>
+        <audio id="audio-player" src="" preload="auto">
       </div>
     </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="card bg-dark text-white mt-3 shadow">
+          <div class="card-body">
+            <div class="row d-none">
+              <div class="col">
+                <button class="btn btn-block bg-dark py-4 text-white">
+                  <div class="mdi mdi-speaker"></div>
+                  Artistas
+                </button>
+              </div>
+              <div class="col">
+                <button class="btn btn-block bg-dark py-4 text-white">
+                  <div class="mdi mdi-album"></div>
+                  Albums
+                </button>
+              </div>
+              <div class="col">
+                <button class="btn btn-block bg-dark py-4 text-white">
+                  <div class="mdi mdi-music"></div>
+                  Canciones
+                </button>
+              </div>
+            </div>
+            <input id="input-search" type="text" class="form-control border-success">
+            <div class="btn-toolbar mt-3" role="toolbar" aria-label="Toolbar with button groups">
+              <button id="btn-resumePlaylist" class="btn btn-success mr-2" onclick="beet_resume()" hidden>Reanudar</button>
+              <div id="div-quickPlaylist" class="dropdown mr-2">
+                <button class="btn bg-dark text-white border border-white dropdown-toggle mdi mdi-music-clef-treble" id="dropdownMenuButton" data-toggle="dropdown">
+                </button>
+                <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
+                  <button type="button" class="dropdown-item" onclick="search('mood_sad:0.7..')">🙁 mood_sad</button>
+                  <button type="button" class="dropdown-item" onclick="search('mood_happy:0.7..')">🙂 mood_happy</button>
+                  <button type="button" class="dropdown-item" onclick="search('mood_aggressive:0.7..')">😡 mood_aggressive</button>
+                  <button type="button" class="dropdown-item" onclick="search('mood_party:0.7..')">🎉 mood_party</button>
+                  <button type="button" class="dropdown-item" onclick="search('mood_acoustic:0.7..')">🎸 mood_acoustic</button>
+                  <button type="button" class="dropdown-item" onclick="search('mood_electronic:0.7..')">🔌 mood_electronic</button>
+                  <button type="button" class="dropdown-item" onclick="search('mood_relaxed:0.7..')">😑 mood_relaxed</button>
+                </div>
+              </div>
+              <div id="div-quickPlaylist" class="dropdown mr-2">
+                <button class="btn bg-dark text-white border border-white dropdown-toggle mdi mdi-music-clef-bass" id="dropdownMenuButton" data-toggle="dropdown">
+                </button>
+                <div class="dropdown-menu bd-dark" aria-labelledby="dropdownMenuButton">
+                  <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:cla')">🎻 cla</button>
+                  <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:dan')">🎼 dan</button>
+                  <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:hip')">🎵 hip</button>
+                  <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:jaz')">🎷 jaz</button>
+                  <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:pop')">🎹 pop</button>
+                  <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:rhy')">🎺 rhy</button>
+                  <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:roc')">🎸 roc</button>
+                  <button type="button" class="dropdown-item" onclick="search('genre_rosamerica:spe')">📻 spe</button>
+                </div>
+              </div>
+              <div class="dropdown mr-2">
+                <button class="btn bg-dark text-white border border-white dropdown-toggle mdi mdi-file-music-outline" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                </button>
+                <div class="dropdown-menu bd-dark">
+                  <button type="button" class="dropdown-item" onclick="search('format:FLAC')">🎶 FLAC</button>
+                  <button type="button" class="dropdown-item" onclick="search('format:MP3')">🎵 MP3</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3" id="row-songResults" hidden>
+    	<div class="col">
+    		<div class="card bg-dark table-striped table-borderless text-white mt-3">
+          <div class="card-body px-0 px-md-4">
+            <div class="btn-toolbar mb-4 mt-0" role="toolbar">
+              <div class="btn-group mr-2 mt-0">
+                <button id="btn-shuffle" class="btn bg-spotifynt text-white mdi mdi-shuffle"></button>
+              </div>
+              <div class="btn-group">
+                <button id="btn-startPlaylist" class="btn bg-spotifynt text-white mdi mdi-playlist-play">
+                  Start Playlist
+                </button>
+                <button type="button" class="btn bg-spotifynt text-white dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                <div class="dropdown-menu">
+                  <button id="btn-appendPlaylist" class="dropdown-item"> Add to list</button>
+                </div>
+              </div>
+            </div>
+            <template id="template-song">
+              <div class="card bg-dark mt-2">
+                <div class="card-body py-2 ">
+                  <div class="row no-gutters align-items-center py-1">
+                    <div class="col-5">
+                      <h6 class="card-title text-white list-song-title">Por que no se van</h6>
+                      <h6 class="card-subtitle text-white-normal list-song-artist">Los prisioneros</h6>
+
+                    </div>
+                    <div class="col-5">
+                      <h6 class="card-subtitle mb-2 text-white-normal list-song-album">Album X</h6>
+                    </div>
+                    <div class="col-2 text-right">
+                      <div class="btn-group" role="group">
+                        <button class="btn btn-sm text-white bg-spotifynt mdi mdi-play list-song-play"></button>
+                        <button class="btn btn-sm text-white bg-spotifynt mdi mdi-dots-vertical list-song-info"></button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </template>
+            <div id='cardBody-songs'>
+            </div>
+					</div>
+    		</div>
+    	</div>
+    </div>
   </div>
+
 
   <div class="modal fade" id="modal-info" tabindex="-1" >
     <div class="modal-dialog modal-lg">
@@ -166,6 +168,6 @@
       </div>
     </div>
   </div>
-</div>
+
 
 {% endblock %}

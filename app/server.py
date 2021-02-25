@@ -18,11 +18,12 @@ def index():
 
 @bp.route('/info/cpu', methods=["GET"])
 def getCpu():
+  print(psutil.cpu_freq(percpu=True))
   return jsonify(psutil.cpu_freq(percpu=True))
 
 @bp.route('/info/disks', methods=["GET"])
 def getDisks():
-  return jsonify(psutil.cpu_freq(percpu=True))
+  return jsonify(psutil.disk_usage('/'))
 
 @bp.route('/info/network', methods=["GET"])
 def getNet():
@@ -30,7 +31,7 @@ def getNet():
 
 @bp.route('/info/ram', methods=["GET"])
 def getRam():
-  return jsonify(psutil.cpu_freq(percpu=True))
+  return jsonify(psutil.disk_usage('/'))
 
 
 

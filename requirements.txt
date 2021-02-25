@@ -4,4 +4,5 @@ speedtest-cli
 hurry.filesize
 requests
 dload
-psutils
+psutil
+

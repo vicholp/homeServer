@@ -1,24 +1,43 @@
-getTorrents()
-async function getTorrents(){
-  getListTorrentDownloading()
-  .then(torrents => {
-    let i = Math.floor(Math.random() * torrents.length);
+$('#carousel-trending').on('slide.bs.carousel', (e) => {
+  setBackground(tmdb_image(document.querySelectorAll(".carousel-item")[e.to].dataset.backdrop))
+});
 
-    let master_id = torrents[i].name
+document.querySelector('#input-search').addEventListener('change', function(e){
+  console.log('buscando:' + e.target.value)
+  window.location.href = `/notflix/search?arg=${encodeURIComponent(e.target.value)}`
+})
 
-    for (torrent of torrents){
-      console.log(torrent)
+tmdb_getTrending()
+  .then(movies => {
+    console.log(movies)
 
-      let id = torrent.name
+    let a = Math.floor(Math.random() * 17);
 
-      backgroundImage = (id == master_id)
+    movies = movies.results.slice(a,a+3)
 
-      displayTorrent(torrent, id, backgroundImage)
-
+    setBackground(tmdb_image(movies[0].backdrop_path))
+    let items = document.querySelectorAll(".carousel-item")
+    for (const [i, item] of items.entries()) {
+      item.querySelector('img').src = tmdb_image(movies[i].poster_path)
+      item.querySelector('a').href = `/notflix/movie?id=${movies[i].id}`
+      item.dataset.backdrop = movies[i].backdrop_path;
     }
   })
 
-}
+torrent_getTorrents("YTS", "downloading")
+.then(torrents => {
+  if (torrents.length == 0) return false
+
+  let i = Math.floor(Math.random() * torrents.length);
+  let master_id = torrents[i].name;
+
+  for (torrent of torrents){
+    let id = torrent.name;
+    displayTorrent(torrent, id, (id == master_id));
+  }
+
+});
+
 
 function displayTorrent(torrent, id, backgroundImage){
   let card = document.querySelector("#card-downloading")
@@ -35,5 +54,7 @@ function displayTorrent(torrent, id, backgroundImage){
         document.querySelector(".container-fluid").style.backgroundImage = 'url(' + movie.data.movie.background_image_original + ')'
       }
 
-    })
+    });
 }
+
+

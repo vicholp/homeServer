@@ -1,0 +1,28 @@
+{% extends "notflix/template.html" %}
+
+{% block scripts %}
+  <script defer type="text/javascript" src="{{url_for('static', filename='notflix/notflix.js')}}"></script>
+  <script defer type="text/javascript" src="{{url_for('static', filename='notflix/movie.js')}}"></script>
+  <script defer type="text/javascript" src="{{url_for('static', filename='base/torrent.js')}}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0" style="background-size: cover;">
+  <div id="layer" class="pt-3 pb-5" style="background: linear-gradient(180deg, rgba(18,18,18,0.4) 0%, rgba(18,18,18,1) 100%);">
+    <div class="container-xl" >
+      <div class="row d-flex justify-content-center">
+        <div class="col-12 col-sm-9">
+          <video id="video" controls preload="auto" poster="" crossorigin="anonymous" class="w-100">
+            <source src="http://localhost:9001/api/movies/file/aa.mp4" type="video/mp4" >
+            <track label="Español" kind="subtitles" srclang="es" src="http://localhost:9001/api/movies/file/c.vtt" default>
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+
+

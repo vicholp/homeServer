@@ -1,55 +1,58 @@
-const OMDB_key = 'e7ddb619'
-
-let params = (new URL(document.location)).searchParams;
-
-ytsGetMovieDetails(params.get('id'))
+tmdb_getDetails((new URL(document.location)).searchParams.get('id'), 'movie', "images,videos")
   .then(movie => {
-    console.log(movie);
+    document.querySelector('#movie-header').src = tmdb_image(movie.images.posters[0].file_path)
+    document.querySelector('#movie-title').textContent = movie.title
+    document.querySelector('#movie-year').textContent = movie.release_date
+    document.querySelector('#movie-desc').textContent = movie.overview
+    document.querySelector('#movie-duration').textContent = ` Duracion: ${movie.runtime} minutos`
+    document.querySelector('#movie-genres').textContent = ' '
+    document.querySelector('#movie-imdb').href = 'https://www.imdb.com/title/' + movie.imdb_id
+    document.querySelector(".container-fluid").style.backgroundImage = 'url(' + tmdb_image(movie.images.backdrops[0].file_path) + ')'
+    document.querySelector("#btn-addToWishlist").addEventListener('click', (e) => addToWishlist(movie.data.movie.id));
 
-    document.querySelector('#movie-header').src = movie.data.movie.large_cover_image
-    document.querySelector('#movie-title').textContent = movie.data.movie.title
-    document.querySelector('#movie-year').textContent = movie.data.movie.year
-    document.querySelector('#movie-desc').textContent = movie.data.movie.description_full
-    document.querySelector('#movie-duration').textContent = ` Duracion: ${movie.data.movie.runtime} minutos`
-    document.querySelector('#movie-genres').textContent = ' ' + movie.data.movie.genres.join(', ')
-    document.querySelector('#movie-imdb').href = 'https://www.imdb.com/title/' + movie.data.movie.imdb_code
+    omdb_getMovieDetails(movie.imdb_id)
+      .then(movie => {
+        for (c of movie.Ratings){
+          document.querySelector(`#movie-${c.Source.replaceAll(' ', '-')}`).textContent = c.Source + ": " +  c.Value
+        }
+      });
 
-    let btns = document.querySelector("#btnGroup-download")
-    for (torrent of movie.data.movie.torrents){
-      console.log(torrent)
-      let t = document.querySelector("#template-btn-download").cloneNode(true).content
-      t.querySelector("button").textContent = `${torrent.quality}`
-      t.querySelector("button").dataset.url = torrent.url
-      t.querySelector("button").dataset.hash = torrent.hash
-      t.querySelector("button").dataset.id = movie.data.movie.id
-      t.querySelector("button").addEventListener('click', function (e) {
-        let b = e.target
-        addTorrent(b.dataset.url, b.dataset.id, b.dataset.hash)
-      })
-      btns.appendChild(t);
-    }
-    let t = document.querySelector("#template-btn-download")
-    t.parentNode.removeChild(t)
+    mkv_getSubs(movie.imdb_id)
+      .then(sub => {
+        if (sub.result == false) document.querySelector("#btn-download-subs").classList.add('disabled')
+        document.querySelector("#btn-download-subs").href = sub.result
+      });
 
-    document.querySelector(".container-fluid").style.backgroundImage = 'url(' + movie.data.movie.background_image_original + ')'
+    yts_getMovieDetails(movie.imdb_id)
+      .then(yts => {
+        yts = yts.data.movies[0];
+        let btns = document.querySelector("#btnGroup-offline");
+        for (const torrent of yts.torrents){
+          let t = document.querySelector("#template-btn-offline").cloneNode(true).content;
+          let btn = t.querySelector("button");
+          btn.textContent = `YTS - ${torrent.quality}`;
+          btn.dataset.imdb_id = movie.imdb_id;
+          btn.dataset.tmdb_id = movie.id;
+          btn.dataset.yts_id = yts.id;
+          btn.dataset.movie = JSON.stringify(movie);
+          btn.dataset.torrent_url = torrent.url;
+          btn.dataset.torrent_hash = torrent.hash;
+          btn.addEventListener('click', e => mkv_download(e.target.dataset))
+          btns.appendChild(t);
+        }
+      });
 
-    getMovieScore(movie.data.movie.imdb_code)
-    return movie;
-  })
+    tmdb_getProviders(movie.id)
+      .then(providers => {
 
+        //providers = providers.results.CL.flatrate
 
+      });
+  });
 
-function magnet(title, hash){
-  return `magnet:?xt=urn:btih:${hash}&dn=${encodeURIComponent(title)}&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://tracker.leechers-paradise.org:6969&tr=udp://p4p.arenabg.ch:1337&tr=udp://tracker.internetwarriors.net:1337`
+function addToWishlist(id){
+  console.log(id)
 }
-function getMovieScore(id){
-  fetch(`http://www.omdbapi.com/?apikey=${OMDB_key}&i=${id}`)
-  .then(response => response.json())
-  .then(movie => {
-    console.log(movie)
 
-    for (c of movie.Ratings){
-      document.querySelector(`#movie-${c.Source.replaceAll(' ', '-')}`).textContent = c.Source + ": " +  c.Value
-    }
-  })
-}
+
+
