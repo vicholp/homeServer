@@ -25,21 +25,25 @@ tmdb_getTrending()
   })
 
 torrent_getTorrents("YTS", "downloading")
-.then(torrents => {
-  if (torrents.length == 0) return false
+  .then(torrents => {
+    if (torrents.length == 0) return false
 
-  let i = Math.floor(Math.random() * torrents.length);
-  let master_id = torrents[i].name;
+    for (torrent of torrents){
+      let id = torrent.name;
+      displayTorrent(torrent, id);
+    }
 
-  for (torrent of torrents){
-    let id = torrent.name;
-    displayTorrent(torrent, id, (id == master_id));
-  }
+  });
 
-});
+mkv_getMovies()
+  .then(movies => {
+    console.log(movies)
+    let a = Math.floor(Math.random() * movies.length);
+    movies = movies.slice(a,a+3)
+  })
 
 
-function displayTorrent(torrent, id, backgroundImage){
+function displayTorrent(torrent, id){
   let card = document.querySelector("#card-downloading")
 
   fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`, {method: "GET"})
@@ -50,9 +54,6 @@ function displayTorrent(torrent, id, backgroundImage){
       t.querySelector(".progress-bar").style.width = `${torrent.progress * 100}%`
       t.querySelector("a").href = "/notflix/movie?id=" + id
       card.appendChild(t)
-      if (backgroundImage) {
-        document.querySelector(".container-fluid").style.backgroundImage = 'url(' + movie.data.movie.background_image_original + ')'
-      }
 
     });
 }
